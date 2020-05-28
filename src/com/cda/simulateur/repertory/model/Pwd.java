@@ -19,4 +19,10 @@ public final class Pwd extends Command {
 		}
 		return sb.toString().substring(0, sb.length()-1);
 	}
+
+	@Override
+	public boolean executer() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

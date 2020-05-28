@@ -1,5 +1,5 @@
 package com.cda.simulateur.menu.action;
 
-public class Action {
-
+public abstract class Action {
+	public abstract boolean executer();
 }
