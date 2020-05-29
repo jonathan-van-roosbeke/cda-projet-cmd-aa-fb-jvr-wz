@@ -6,23 +6,24 @@ import com.cda.simulateur.menu.action.Command;
 
 public class River extends Command {
 	private static final String ID = "river";
-	private static final String DESC = "Affiche la 1ère intersections des rivières";
+	private static final String DESC = "Affiche la premiÃ¨re intersection des riviÃ¨res";
+	private static String pArgs = 
 
-	River() {
+	River(String pArgs) {
 		super(ID, DESC);
 	}
 
 	public void executer() {
-		long r1 = IHM_INS.lireLong();
-		long r2 = IHM_INS.lireLong();
+		String r1 = IHM_INS.lireMot();
+		String r2 = IHM_INS.lireMot();
 
 		while (r1 != r2) {
 			if (r1 > r2) {
-				for (char i : Long.toString(r2).toCharArray()) {
+				for (char i : r2.toCharArray()) {
 					r2 += Character.getNumericValue(i);
 				}
 			} else {
-				for (char i : Long.toString(r1).toCharArray()) {
+				for (char i : r1.toCharArray()) {
 					r1 += Character.getNumericValue(i);
 				}
 			}

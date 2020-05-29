@@ -1,11 +1,10 @@
 package com.cda.simulateur.tools;
 
-import java.io.InputStream;
 import java.util.Scanner;
 
 public class Ihm {
 	public static final Ihm IHM_INS = new Ihm();
-	
+
 	private Scanner scanner;
 	private boolean interactif;
 	private boolean afficherCommentaire;
@@ -14,24 +13,6 @@ public class Ihm {
 		this.interactif = Boolean.TRUE;
 		this.scanner = new Scanner(System.in);
 	}
-
-//	public void changerMode(boolean pInteractif) {
-//		changerMode(pInteractif, false);
-//	}
-//
-//	public void changerMode(boolean pInteractif, boolean pAfficherCommentaire) {
-//		if (this.interactif ^ pInteractif) {
-//			this.scanner.close();
-//			this.afficherCommentaire = pAfficherCommentaire;
-//			if (this.interactif) {
-//				InputStream vFileTestIs = this.getClass().getResourceAsStream("scenario.txt");
-//				this.scanner = new Scanner(vFileTestIs);
-//			} else {
-//				this.scanner = new Scanner(System.in);
-//			}
-//			this.interactif = pInteractif;
-//		}
-//	}
 
 	public int lireEntier() {
 		System.out.print("< ");
@@ -48,7 +29,7 @@ public class Ihm {
 		System.out.println();
 		return saisie;
 	}
-	
+
 	public long lireLong() {
 		System.out.print("< ");
 		long saisie = this.scanner.nextLong();
@@ -104,13 +85,5 @@ public class Ihm {
 			System.out.println(saisie);
 		}
 		return saisie;
-	}
-
-	public void afficher(String pMessage) {
-		afficher(pMessage, true);
-	}
-
-	public void afficher(String pMessage, boolean pAvecSautDeLigne) {
-		System.out.print(pMessage + (pAvecSautDeLigne ? "\n" : ""));
 	}
 }

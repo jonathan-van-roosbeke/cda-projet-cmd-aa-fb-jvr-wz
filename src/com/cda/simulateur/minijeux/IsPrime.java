@@ -1,12 +1,13 @@
 package com.cda.simulateur.minijeux;
 
-import com.cda.simulateur.menu.action.Command;
 import static com.cda.simulateur.tools.Ihm.IHM_INS;
+
+import com.cda.simulateur.menu.action.Command;
 
 public class IsPrime extends Command {
 	private static final String ID = "isprime";
-	private static final String DESC = "Vérifier si le nombre est premier";
-	
+	private static final String DESC = "Verifier si le nombre est premier";
+
 	IsPrime() {
 		super(ID, DESC);
 	}
@@ -17,7 +18,7 @@ public class IsPrime extends Command {
 
 	@Override
 	public void executer() {
-		long n = IHM_INS.lireLong();
+		long n = IHM_INS.lireInt();
 		boolean bool = false;
 		String result = " n'est pas premier";
 		if (n <= 1) {
