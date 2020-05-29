@@ -5,9 +5,12 @@ import java.util.Map;
 
 public class Help extends Command {
 	private static final HashMap<String, String> LISTCMD = new HashMap<>();
+
 	public static Help help = new Help();
 
+
 	private Help() {
+		super();
 		LISTCMD.put("help", "Liste les cmd de la console");
 		LISTCMD.put("exit", "Commande pour quitter la console");
 		LISTCMD.put("history", "Liste des dernieres Cmd effectué");
@@ -25,20 +28,11 @@ public class Help extends Command {
 		LISTCMD.put("dirng", "Affiche le contenu du repertoire en cour 2.0");
 	}
 
-	public static Help getHelp() {
-		return help;
-	}
-
-	public static HashMap<String, String> getListcmd() {
-		return LISTCMD;
-	}
-
 	public void executer() {
 		System.out.println("Bonjour sur la console cda");
 		for (Map.Entry<String, String> entry : Help.LISTCMD.entrySet()) {
 			System.out.println(String.format("%-12s : %15s", entry.getKey(),entry.getValue()));
 		}
-		
 	}
 
 	@Override

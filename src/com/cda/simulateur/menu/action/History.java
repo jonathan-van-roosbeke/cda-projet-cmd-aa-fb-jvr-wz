@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class History extends Command {
+
 	public static final ArrayList<String> LISTCOMMAND = new ArrayList<>();
 	private static DateTimeFormatter vDateFormat = DateTimeFormatter.ofPattern("hh:mm:ss  dd-MM-yyyy");
 	public static History HistoryInstance= new History();
@@ -37,9 +38,6 @@ public class History extends Command {
 	public void executer(String... pSaisie) {
 		
 	}
-
-
-
 }
 
 /*
