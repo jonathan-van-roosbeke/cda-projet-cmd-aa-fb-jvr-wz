@@ -11,5 +11,5 @@ public class Exit extends Command {
 	public String toString() {
 		return "Merci au revoir";
 	}
-
+//test
 }
