@@ -7,17 +7,43 @@ import java.util.List;
 import com.cda.simulateur.menu.action.Command;
 
 public final class Pwd extends Command {
-
 	private static final String vCheminDeDebut = System.getProperty("user.dir");
 	protected static List<String> vCheminArray = new ArrayList<>(Arrays.asList(vCheminDeDebut.split("\\\\")));
-	
+	public static String adressCourante = vCheminDeDebut;
+	public final static Pwd pwdInstance = new Pwd();
+
+	private Pwd() {
+		super();
+	}
+
 	// retourne le chemin du repertoire courant
-	public static String executer() {
+
+	public static Pwd getPwdinstance() {
+		return pwdInstance;
+	}
+
+	@Override
+	public void executer() {
+
 		StringBuilder sb = new StringBuilder();
-		for(String s : vCheminArray) {
+		for (String s : vCheminArray) {
 			sb.append(s);
 			sb.append("\\");
 		}
-		return sb.toString().substring(0, sb.length()-1);
+		Pwd.setAdressCourante(sb.toString());
+		System.out.println(adressCourante);
+	}
+
+	public static String getAdressCourante() {
+		return adressCourante;
+	}
+
+	public static void setAdressCourante(String adressCourante) {
+		Pwd.adressCourante = adressCourante;
+	}
+
+	@Override
+	public void executer(String... pSaisie) {
+
 	}
 }
