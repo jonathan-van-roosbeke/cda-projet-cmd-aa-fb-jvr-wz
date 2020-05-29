@@ -4,30 +4,33 @@ import com.cda.simulateur.menu.action.Command;
 import static com.cda.simulateur.tools.Ihm.IHM_INS;
 
 public class IsPrime extends Command {
-	private static final int ID = 2;
+	private static final String ID = "isprime";
 	private static final String DESC = "Vérifier si le nombre est premier";
 	
 	IsPrime() {
 		super(ID, DESC);
 	}
 
-	protected IsPrime(int pId, String pDescription) {
+	protected IsPrime(String pId, String pDescription) {
 		super(pId, pDescription);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	public boolean executer() {
+	public void executer() {
 		long n = IHM_INS.lireLong();
+		boolean bool = false;
+		String result = " n'est pas premier";
 		if (n <= 1) {
-			return false;
 		} else {
 			for (long i = 2; i * i <= n; i++) {
 				if (n % i == 0) {
-					return false;
+					bool = true;
 				}
 			}
-			return true;
+			if (!bool) {
+				result = " est premier";
+			}
 		}
+		System.out.println(result);
 	}
 }

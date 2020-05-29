@@ -1,16 +1,17 @@
 package com.cda.simulateur.menu.action;
 
 public abstract class Action {
-	protected final int id;
+	protected final String id;
 	protected final String description;
 	
-	protected Action(int pId, String pDescription) {
+	protected Action(String pId, String pDescription) {
 		this.id = pId;
 		this.description = pDescription;
 	}
-	public abstract boolean executer();
 	
-	public int getId() {
+	protected abstract void executer();
+	
+	public String getId() {
 		return this.id;
 	}
 	
