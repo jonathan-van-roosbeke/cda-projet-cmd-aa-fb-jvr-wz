@@ -3,36 +3,45 @@ package com.cda.simulateur.minijeux;
 import com.cda.simulateur.menu.action.Command;
 
 public class River extends Command {
+	private static String pArgA = "";
+	private static String pArgB = "";
 
-	River() {
+	public River(String pArg) {
 		super();
-	}
 
-	public void executer(String r1, String r2) {
-
-		while (r1 != r2) {
-			if (r1 > r2) {
-				for (char i : Long.toString(r2).toCharArray()) {
-					r2 += Character.getNumericValue(i);
-				}
-			} else {
-				for (char i : Long.toString(r1).toCharArray()) {
-					r1 += Character.getNumericValue(i);
-				}
-
-			}
+		try {
+			String[] temp = pArg.split(" ");
+			this.pArgA = temp[0];
+			this.pArgB = temp[1];
+		} catch (Exception e) {
+			System.out.println("erreur de saisie");
 		}
-		System.out.println(r1);
-	}
-
-	@Override
-	public void executer(String... pSaisie) {
-
 	}
 
 	@Override
 	public void executer() {
-		// TODO Auto-generated method stub
+		String strTempA = pArgA;
+		String strTempB = pArgB;
+		int intTempA = Integer.parseInt(pArgA);
+		int intTempB = Integer.parseInt(pArgB);
 
+		while (intTempA != intTempB) {
+			if (intTempA > intTempB) {
+				for (char i : strTempB.toCharArray()) {
+					intTempB += Character.getNumericValue(i);
+				}
+			} else {
+				for (char i : strTempA.toCharArray()) {
+					intTempA += Character.getNumericValue(i);
+				}
+			}
+			strTempA = String.valueOf(intTempA);
+			strTempB = String.valueOf(intTempB);
+		}
+		System.out.println(strTempA);
+	}
+
+	@Override
+	public void executer(String... pSaisie) {
 	}
 }

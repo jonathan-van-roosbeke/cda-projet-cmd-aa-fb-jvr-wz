@@ -1,16 +1,24 @@
 package com.cda.simulateur.minijeux;
 
 import com.cda.simulateur.menu.action.Command;
-import com.cda.simulateur.tools.Ihm;
 
 public class IsPrime extends Command {
-	IsPrime() {
+	private static String pArg = "";
+
+	public IsPrime(String pArg) {
 		super();
+
+		try {
+			this.pArg = pArg;
+		} catch (Exception e) {
+			System.out.println("erreur de saisie");
+		}
 	}
 
 	@Override
 	public void executer() {
-		long n = Ihm.getIhmInstance().lireLong();
+		int n = Integer.parseInt(pArg);
+
 		boolean bool = false;
 		String result = " n'est pas premier";
 		if (n <= 1) {
