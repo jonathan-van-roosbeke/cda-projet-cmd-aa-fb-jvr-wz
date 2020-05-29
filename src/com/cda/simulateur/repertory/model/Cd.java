@@ -23,7 +23,7 @@ public final class Cd extends Command {
 			List<String> temp = Arrays.asList(pSaisie.split("\\\\"));
 			for (String s : temp) {
 				Pwd.vCheminArray.add(s);
-			}
+			} 
 		
 		// on verfie si le repertoire demande existe dans le repertoire actuel
 		} else if (verifieSiLeDocumentExisteDansRepertoireCourant(pSaisie)) {
