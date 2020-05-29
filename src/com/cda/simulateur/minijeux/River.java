@@ -5,6 +5,13 @@ import static com.cda.simulateur.tools.Ihm.IHM_INS;
 import com.cda.simulateur.menu.action.Command;
 
 public class River extends Command {
+	private static final int ID = 3;
+	private static final String DESC = "Affiche la 1ère intersections des rivières";
+	
+	River() {
+		super(ID, DESC);
+		// TODO Auto-generated constructor stub
+	}
 
 	public boolean executer() {
 		long r1 = IHM_INS.lireLong();
@@ -22,6 +29,6 @@ public class River extends Command {
 			}
 			System.out.println(r1);
 		}
-		return Boolean.TRUE;
+		return true;
 	}
 }
