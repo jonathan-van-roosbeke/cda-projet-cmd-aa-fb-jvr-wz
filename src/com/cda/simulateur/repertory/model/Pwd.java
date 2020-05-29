@@ -12,7 +12,7 @@ public final class Pwd extends Command {
 	protected static List<String> vCheminArray = new ArrayList<>(Arrays.asList(vCheminDeDebut.split("\\\\")));
 	
 	// retourne le chemin du repertoire courant
-	public static String executer() {
+	public String executer() {
 		StringBuilder sb = new StringBuilder();
 		for(String s : vCheminArray) {
 			sb.append(s);

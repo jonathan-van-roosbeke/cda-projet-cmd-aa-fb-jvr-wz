@@ -7,8 +7,8 @@ import java.util.List;
 import com.cda.simulateur.menu.action.Command;
 
 public final class Cd extends Command {
-
-	public static void executer(String pSaisie) {
+	@Override
+	public void executer(String pSaisie) {
 		
 		// va au parent si la commande == ".." || "cd.."
 		if (pSaisie.equals("..") || pSaisie.equalsIgnoreCase("cd..") && Pwd.vCheminArray.size() > 1) {
