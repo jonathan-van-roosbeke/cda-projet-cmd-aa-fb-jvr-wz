@@ -7,9 +7,9 @@ import java.util.List;
 import com.cda.simulateur.menu.action.Command;
 
 public final class Pwd extends Command {
-	private static final String vCheminDeDebut = System.getProperty("user.dir");
-	protected static List<String> vCheminArray = new ArrayList<>(Arrays.asList(vCheminDeDebut.split("\\\\")));
-	public static String adressCourante = vCheminDeDebut;
+	private static final String vCheminEnCours = System.getProperty("user.dir");
+	protected static List<String> vCheminArray = new ArrayList<>(Arrays.asList(vCheminEnCours.split("\\\\")));
+	public static String adressCourante = vCheminEnCours;
 	public final static Pwd pwdInstance = new Pwd();
 
 	private Pwd() {
@@ -17,14 +17,12 @@ public final class Pwd extends Command {
 	}
 
 	// retourne le chemin du repertoire courant
-
 	public static Pwd getPwdinstance() {
 		return pwdInstance;
 	}
 
 	@Override
 	public void executer() {
-
 		StringBuilder sb = new StringBuilder();
 		for (String s : vCheminArray) {
 			sb.append(s);
@@ -44,6 +42,5 @@ public final class Pwd extends Command {
 
 	@Override
 	public void executer(String... pSaisie) {
-
 	}
 }

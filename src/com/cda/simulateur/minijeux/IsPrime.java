@@ -3,24 +3,18 @@ package com.cda.simulateur.minijeux;
 import com.cda.simulateur.menu.action.Command;
 
 public class IsPrime extends Command {
-	private static String pArg = "";
 
-	public IsPrime(String pArg) {
+	public static IsPrime isPrimeInstance = new IsPrime();
+
+	private IsPrime() {
 		super();
-
-		try {
-			this.pArg = pArg;
-		} catch (Exception e) {
-			System.out.println("erreur de saisie");
-		}
 	}
 
 	@Override
-	public void executer() {
-		int n = Integer.parseInt(pArg);
-
+	public void executer(String... pArg) {
+		int n = Integer.parseInt(pArg[0]);
 		boolean bool = false;
-		String result = " n'est pas premier";
+		String result = "n'est pas un nombre premier";
 		if (n <= 1) {
 		} else {
 			for (long i = 2; i * i <= n; i++) {
@@ -29,14 +23,13 @@ public class IsPrime extends Command {
 				}
 			}
 			if (!bool) {
-				result = " est premier";
+				result = "est un nombre premier";
 			}
 		}
 		System.out.println(result);
 	}
 
 	@Override
-	public void executer(String... pSaisie) {
-
+	public void executer() {
 	}
 }
