@@ -53,10 +53,12 @@ public class Copy extends Command {
 
 	}
 
-	Copy() {
+//	Copy() {
 //		super(ID, DESC);
-	}
-
+//	}
+//	public boolean executer() {
+//		return true;
+//	}
 	@Override
 	public void executer() {
 	}
@@ -64,6 +66,5 @@ public class Copy extends Command {
 	@Override
 	public void executer(String... pSaisie) {
 		// TODO Auto-generated method stub
-
 	}
 }
