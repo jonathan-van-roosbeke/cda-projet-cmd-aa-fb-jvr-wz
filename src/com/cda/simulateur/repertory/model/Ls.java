@@ -5,7 +5,6 @@ import java.io.File;
 import com.cda.simulateur.menu.action.Command;
 
 public class Ls extends Command {
-
 	public final static Ls lsInstance = new Ls();
 
 	private static Ls getLsInstance() {
@@ -25,6 +24,5 @@ public class Ls extends Command {
 	@Override
 	public void executer(String... pSaisie) {
 		// TODO Auto-generated method stub
-
 	}
 }

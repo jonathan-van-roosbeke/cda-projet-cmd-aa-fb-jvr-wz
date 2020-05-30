@@ -4,10 +4,13 @@ import com.cda.simulateur.menu.action.Command;
 
 public class Crd extends Command {
 
+	Crd() {
+		super();
+	}
+
 	@Override
 	public void executer() {
-		// TODO Auto-generated method stub
-
+		File vRep = new File("");
 	}
 
 	@Override
@@ -15,5 +18,4 @@ public class Crd extends Command {
 		// TODO Auto-generated method stub
 
 	}
-
 }

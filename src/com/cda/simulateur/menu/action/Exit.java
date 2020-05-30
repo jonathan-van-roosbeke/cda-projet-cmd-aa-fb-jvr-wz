@@ -6,7 +6,6 @@ public class Exit extends Command {
 
 	public Exit() {
 		super();
-
 	}
 
 	@Override
@@ -18,4 +17,5 @@ public class Exit extends Command {
 	public void executer(String... pSaisie) {
 
 	}
+
 }

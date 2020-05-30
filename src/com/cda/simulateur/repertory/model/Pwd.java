@@ -17,14 +17,12 @@ public final class Pwd extends Command {
 	}
 
 	// retourne le chemin du repertoire courant
-
 	public static Pwd getPwdinstance() {
 		return pwdInstance;
 	}
 
 	@Override
 	public void executer() {
-
 		StringBuilder sb = new StringBuilder();
 		for (String s : vCheminArray) {
 			sb.append(s);
@@ -44,6 +42,5 @@ public final class Pwd extends Command {
 
 	@Override
 	public void executer(String... pSaisie) {
-
 	}
 }
