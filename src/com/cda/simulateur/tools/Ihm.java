@@ -11,6 +11,7 @@ import com.cda.simulateur.menu.action.HistoryClear;
 import com.cda.simulateur.minijeux.IsPrime;
 import com.cda.simulateur.minijeux.River;
 import com.cda.simulateur.repertory.model.Cd;
+import com.cda.simulateur.repertory.model.Ls;
 import com.cda.simulateur.repertory.model.Pwd;
 
 public class Ihm {
@@ -29,6 +30,7 @@ public class Ihm {
 		listCmd.put("cd", Cd.cdInstance);
 		listCmd.put("river", River.isRiverInstance);
 		listCmd.put("isprime", IsPrime.isPrimeInstance);
+		listCmd.put("ls", Ls.lsInstance);
 	}
 
 	public static HashMap<String, Command> getListCmd() {
@@ -53,7 +55,6 @@ public class Ihm {
 		do {
 			System.out.println("saisissez une cmd");
 			cmd = sc.nextLine().toLowerCase().trim();
-//			String[] test = cmd.split(" "); // peut-etre gérer avec substrings ??
 
 			if (cmd.indexOf(" ") == -1) {
 				Ihm.getAllCommand(cmd).executer();

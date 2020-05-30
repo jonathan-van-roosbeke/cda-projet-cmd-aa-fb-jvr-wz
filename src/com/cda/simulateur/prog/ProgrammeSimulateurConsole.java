@@ -6,6 +6,5 @@ public class ProgrammeSimulateurConsole {
 
 	public static void main(String[] args) {
 		Ihm.lancerMenu();
-//		IsPrime.executer("6");
 	}
 }
