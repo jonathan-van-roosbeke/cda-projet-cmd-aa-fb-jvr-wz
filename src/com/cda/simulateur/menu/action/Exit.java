@@ -2,11 +2,10 @@ package com.cda.simulateur.menu.action;
 
 public class Exit extends Command {
 	public static boolean exit = false;
-	private static final String ID = "exit";
-	private static final String DESC = "Quitter la console";
+	public static Exit exitInstance = new Exit();
 
-	Exit() {
-		super(ID, DESC);
+	public Exit() {
+		super();
 	}
 
 	@Override
@@ -14,7 +13,9 @@ public class Exit extends Command {
 		exit = true;
 	}
 
-//	public String toString() {
-//		return "Merci au revoir";
-//	}
+	@Override
+	public void executer(String... pSaisie) {
+
+	}
+
 }

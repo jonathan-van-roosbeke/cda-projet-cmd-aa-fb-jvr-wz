@@ -1,32 +1,51 @@
 package com.cda.simulateur.minijeux;
 
-import static com.cda.simulateur.tools.Ihm.IHM_INS;
-
 import com.cda.simulateur.menu.action.Command;
+import com.cda.simulateur.tools.Utils;
 
 public class River extends Command {
-	private static final String ID = "river";
-	private static final String DESC = "Affiche la 1Ëre intersections des riviËres";
+	public static River isRiverInstance = new River();
 
-	River() {
-		super(ID, DESC);
+	private River() {
+		super();
 	}
 
-	public void executer() {
-		long r1 = IHM_INS.lireLong();
-		long r2 = IHM_INS.lireLong();
+	@Override
+	public void executer(String... pArg) {
+		String result = Utils.stringCleaner(pArg);
 
-		while (r1 != r2) {
-			if (r1 > r2) {
-				for (char i : Long.toString(r2).toCharArray()) {
-					r2 += Character.getNumericValue(i);
+		String[] test = result.split(" ");
+
+		String strTempA = test[0];
+		String strTempB = test[1];
+
+		int intTempA = Integer.parseInt(strTempA);
+		int intTempB = Integer.parseInt(strTempB);
+		int compteur = 0;
+
+		while (intTempA != intTempB) {
+
+			if (intTempA > intTempB) {
+				for (char i : strTempB.toCharArray()) {
+					intTempB += Character.getNumericValue(i);
 				}
 			} else {
-				for (char i : Long.toString(r1).toCharArray()) {
-					r1 += Character.getNumericValue(i);
+				for (char i : strTempA.toCharArray()) {
+					intTempA += Character.getNumericValue(i);
 				}
 			}
+			strTempA = String.valueOf(intTempA);
+			strTempB = String.valueOf(intTempB);
+			compteur++;
+			if (compteur == 5000000) {
+				System.out.println("d√©lai expir√©");
+				return;
+			}
 		}
-		System.out.println(r1);
+		System.out.println(strTempA);
+	}
+
+	@Override
+	public void executer() {
 	}
 }

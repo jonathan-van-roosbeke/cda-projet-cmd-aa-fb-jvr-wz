@@ -14,4 +14,18 @@ public class Cat extends Command {
 	public void executer() {
 	}
 
+	Cat() {
+		super();
+	}
+
+	@Override
+	public void executer() {
+	}
+
+	@Override
+	public void executer(String... pSaisie) {
+		// TODO Auto-generated method stub
+
+	}
+
 }

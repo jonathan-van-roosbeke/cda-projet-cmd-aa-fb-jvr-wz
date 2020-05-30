@@ -1,37 +1,73 @@
 package com.cda.simulateur.tools;
 
-import java.io.InputStream;
+import java.util.HashMap;
 import java.util.Scanner;
 
+import com.cda.simulateur.menu.action.Command;
+import com.cda.simulateur.menu.action.Exit;
+import com.cda.simulateur.menu.action.Help;
+import com.cda.simulateur.menu.action.History;
+import com.cda.simulateur.menu.action.HistoryClear;
+import com.cda.simulateur.minijeux.IsPrime;
+import com.cda.simulateur.minijeux.River;
+import com.cda.simulateur.repertory.model.Cd;
+import com.cda.simulateur.repertory.model.Ls;
+import com.cda.simulateur.repertory.model.Pwd;
+
 public class Ihm {
-	public static final Ihm IHM_INS = new Ihm();
-	
+	public static HashMap<String, Command> listCmd = new HashMap<>();
+	private final static Ihm ihmInstance = new Ihm();
 	private Scanner scanner;
 	private boolean interactif;
 	private boolean afficherCommentaire;
 
 	private Ihm() {
-		this.interactif = Boolean.TRUE;
-		this.scanner = new Scanner(System.in);
+		listCmd.put("exit", Exit.exitInstance);
+		listCmd.put("help", Help.help);
+		listCmd.put("history", History.HistoryInstance);
+		listCmd.put("pwd", Pwd.pwdInstance);
+		listCmd.put("histclear", HistoryClear.HistoryClearInstance);
+		listCmd.put("cd", Cd.cdInstance);
+		listCmd.put("river", River.isRiverInstance);
+		listCmd.put("isprime", IsPrime.isPrimeInstance);
+		listCmd.put("ls", Ls.lsInstance);
 	}
 
-//	public void changerMode(boolean pInteractif) {
-//		changerMode(pInteractif, false);
-//	}
-//
-//	public void changerMode(boolean pInteractif, boolean pAfficherCommentaire) {
-//		if (this.interactif ^ pInteractif) {
-//			this.scanner.close();
-//			this.afficherCommentaire = pAfficherCommentaire;
-//			if (this.interactif) {
-//				InputStream vFileTestIs = this.getClass().getResourceAsStream("scenario.txt");
-//				this.scanner = new Scanner(vFileTestIs);
-//			} else {
-//				this.scanner = new Scanner(System.in);
-//			}
-//			this.interactif = pInteractif;
-//		}
-//	}
+	public static HashMap<String, Command> getListCmd() {
+		return listCmd;
+	}
+
+	public static void setListCmd(HashMap<String, Command> listCmd) {
+		Ihm.listCmd = listCmd;
+	}
+
+	public static Ihm getIhmInstance() {
+		return ihmInstance;
+	}
+
+	public static Command getAllCommand(String pCmd) {
+		return listCmd.get(pCmd);
+	}
+
+	public static void lancerMenu() {
+		Scanner sc = new Scanner(System.in);
+		String cmd;
+		do {
+			System.out.println("saisissez une cmd");
+			cmd = sc.nextLine().toLowerCase().trim();
+
+			if (cmd.indexOf(" ") == -1) {
+				Ihm.getAllCommand(cmd).executer();
+				History.ajouterCmd(cmd);
+			} else {
+				String commande = cmd.substring(0, cmd.indexOf(" "));
+				String arguments = cmd.substring(cmd.indexOf(" ") + 1).trim();
+				Ihm.getAllCommand(commande).executer(arguments);
+				History.ajouterCmd(commande);
+			}
+		} while (!Exit.exit);
+		sc.close();
+	}
 
 	public int lireEntier() {
 		System.out.print("< ");
@@ -48,7 +84,7 @@ public class Ihm {
 		System.out.println();
 		return saisie;
 	}
-	
+
 	public long lireLong() {
 		System.out.print("< ");
 		long saisie = this.scanner.nextLong();
@@ -104,13 +140,5 @@ public class Ihm {
 			System.out.println(saisie);
 		}
 		return saisie;
-	}
-
-	public void afficher(String pMessage) {
-		afficher(pMessage, true);
-	}
-
-	public void afficher(String pMessage, boolean pAvecSautDeLigne) {
-		System.out.print(pMessage + (pAvecSautDeLigne ? "\n" : ""));
 	}
 }

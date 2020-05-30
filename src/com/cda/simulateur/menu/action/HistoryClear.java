@@ -1,14 +1,20 @@
 package com.cda.simulateur.menu.action;
 
 public class HistoryClear extends Command {
-	private static final String ID = "histclear";
-	private static final String DESC = "Efface les dernières commandes tapées";
-	
+	public static HistoryClear HistoryClearInstance = new HistoryClear();
+
 	HistoryClear() {
-		super(ID, DESC);
+		super();
 	}
-	
+
 	@Override
 	public void executer() {
+		History.LISTCOMMAND.clear();
 	}
+
+	@Override
+	public void executer(String... pSaisie) {
+
+	}
+
 }
