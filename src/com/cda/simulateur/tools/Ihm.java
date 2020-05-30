@@ -12,6 +12,7 @@ import com.cda.simulateur.minijeux.IsPrime;
 import com.cda.simulateur.minijeux.River;
 import com.cda.simulateur.repertory.model.Cd;
 import com.cda.simulateur.repertory.model.Dir;
+import com.cda.simulateur.repertory.model.Dirng;
 import com.cda.simulateur.repertory.model.Ls;
 import com.cda.simulateur.repertory.model.Pwd;
 
@@ -33,6 +34,7 @@ public class Ihm {
 		listCmd.put("isprime", IsPrime.isPrimeInstance);
 		listCmd.put("ls", Ls.lsInstance);
 		listCmd.put("dir", Dir.dirInstance);
+		listCmd.put("dirng", Dirng.dirngInstance);
 	}
 
 	public static HashMap<String, Command> getListCmd() {

@@ -4,19 +4,21 @@ import com.cda.simulateur.menu.action.Command;
 
 public class Dirng extends Command {
 
+	public final static Dirng dirngInstance = new Dirng();
+
 	Dirng() {
 		super();
 	}
 
 	@Override
 	public void executer() {
-		// TODO Auto-generated method stub
-
+		Dir.dirInstance.executer();
+		System.out.println("Nombre de dossier = " + Dir.dirInstance.vNombreDossier);
+		System.out.println("Nombre de fichier = " + Dir.dirInstance.vNombreFichier);
 	}
 
 	@Override
 	public void executer(String... pSaisie) {
-		// TODO Auto-generated method stub
 
 	}
 }
