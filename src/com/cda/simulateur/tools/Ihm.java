@@ -1,8 +1,11 @@
 package com.cda.simulateur.tools;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import com.cda.exceptions.FileErrorException;
+import com.cda.simulateur.file.model.copy.Copy;
 import com.cda.simulateur.menu.action.Command;
 import com.cda.simulateur.menu.action.Exit;
 import com.cda.simulateur.menu.action.Help;
@@ -35,6 +38,7 @@ public class Ihm {
 		listCmd.put("ls", Ls.lsInstance);
 		listCmd.put("dir", Dir.dirInstance);
 		listCmd.put("dirng", Dirng.dirngInstance);
+		listCmd.put("copy", Copy.copyInstance);
 	}
 
 	public static HashMap<String, Command> getListCmd() {
@@ -53,7 +57,7 @@ public class Ihm {
 		return listCmd.get(pCmd);
 	}
 
-	public static void lancerMenu() {
+	public static void lancerMenu() throws FileErrorException, IOException {
 		Scanner sc = new Scanner(System.in);
 		String cmd;
 		do {
