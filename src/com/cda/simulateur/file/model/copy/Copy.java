@@ -9,8 +9,6 @@ import com.cda.exceptions.FileErrorException;
 import com.cda.simulateur.menu.action.Command;
 
 public class Copy extends Command {
-	private static final String ID = "copy";
-	private static final String DESC = "Copie un fichier";
 
 	public static void copy(String args) throws FileErrorException, IOException {
 		FileInputStream fis = null;
@@ -53,18 +51,14 @@ public class Copy extends Command {
 
 	}
 
-//	Copy() {
-//		super(ID, DESC);
-//	}
-//	public boolean executer() {
-//		return true;
-//	}
-	@Override
-	public void executer() {
-	}
-
 	@Override
 	public void executer(String... pSaisie) {
 		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void executer() {
+		// TODO Auto-generated method stub
+
 	}
 }

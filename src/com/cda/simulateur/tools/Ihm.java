@@ -25,7 +25,7 @@ public class Ihm {
 		listCmd.put("exit", Exit.exitInstance);
 		listCmd.put("help", Help.help);
 		listCmd.put("history", History.HistoryInstance);
-		listCmd.put("pwd", Pwd.pwdInstance);
+		listCmd.put("pwd", Pwd.vPwdInstance);
 		listCmd.put("histclear", HistoryClear.HistoryClearInstance);
 		listCmd.put("cd", Cd.cdInstance);
 		listCmd.put("river", River.isRiverInstance);

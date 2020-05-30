@@ -10,6 +10,8 @@ public class Dir extends Command {
 
 	@Override
 	public void executer() {
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override

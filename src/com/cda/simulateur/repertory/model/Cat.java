@@ -4,22 +4,12 @@ import com.cda.simulateur.menu.action.Command;
 
 public class Cat extends Command {
 	private static final String ID = "cat";
-	private static final String DESC = "Affiche le contenu du fichier sélectionné";
-	
-	Cat() {
-		super(ID, DESC);
-	}
+	private static final String DESC = "Affiche le contenu du fichier sï¿½lectionnï¿½";
 
 	@Override
 	public void executer() {
-	}
+		// TODO Auto-generated method stub
 
-	Cat() {
-		super();
-	}
-
-	@Override
-	public void executer() {
 	}
 
 	@Override

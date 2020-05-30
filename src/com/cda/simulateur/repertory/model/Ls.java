@@ -13,9 +13,9 @@ public class Ls extends Command {
 
 	@Override
 	public void executer() {
-		File curDir = new File(Pwd.getAdressCourante());
-		File[] filesList = curDir.listFiles();
-		for (File f : filesList) {
+		File vCurDir = new File(Pwd.getAdressCourante());
+		File[] vFilesList = vCurDir.listFiles();
+		for (File f : vFilesList) {
 			System.out.println(f.getName());
 		}
 		System.out.println();
