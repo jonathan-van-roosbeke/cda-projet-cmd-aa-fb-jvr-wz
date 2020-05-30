@@ -4,7 +4,7 @@ import com.cda.simulateur.menu.action.Command;
 
 public class Find extends Command {
 	private static final String ID = "find";
-	private static final String DESC = "Liste tous les fichiers dans le répertoire en cours";
+	private static final String DESC = "Liste tous les fichiers dans le rï¿½pertoire en cours";
 
 	private Find() {
 
@@ -20,5 +20,4 @@ public class Find extends Command {
 		// TODO Auto-generated method stub
 
 	}
-
 }
