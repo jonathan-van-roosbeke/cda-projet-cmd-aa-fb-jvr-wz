@@ -7,6 +7,7 @@ import java.util.List;
 import com.cda.simulateur.menu.action.Command;
 
 public final class Cd extends Command {
+
 	public static Cd cdInstance = new Cd();
 
 	private Cd() {
