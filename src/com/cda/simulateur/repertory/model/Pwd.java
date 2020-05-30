@@ -8,7 +8,7 @@ import com.cda.simulateur.menu.action.Command;
 
 public final class Pwd extends Command {
 	private static final String vCheminEnCours = System.getProperty("user.dir");
-	protected static List<String> vCheminArray = new ArrayList<>(Arrays.asList(vCheminEnCours.split("\\\\")));
+	protected static List<String> vCheminArray = new ArrayList<>(Arrays.asList(vCheminEnCours.split("/")));
 	public static String adressCourante = vCheminEnCours;
 	public final static Pwd pwdInstance = new Pwd();
 
@@ -26,7 +26,7 @@ public final class Pwd extends Command {
 		StringBuilder sb = new StringBuilder();
 		for (String s : vCheminArray) {
 			sb.append(s);
-			sb.append("\\");
+			sb.append("/");
 		}
 		Pwd.setAdressCourante(sb.toString());
 		System.out.println(adressCourante);
