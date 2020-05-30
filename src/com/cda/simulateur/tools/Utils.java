@@ -20,4 +20,11 @@ public class Utils {
 		String result = commande.replaceAll(regex, " ").trim();
 		return result;
 	}
+
+	public static String stringCleaner(String pArg) {
+		String commande = pArg;
+		String regex = "\\s+";
+		String result = commande.replaceAll(regex, " ").trim();
+		return result;
+	}
 }

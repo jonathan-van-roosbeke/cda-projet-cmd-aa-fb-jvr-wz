@@ -7,10 +7,10 @@ import java.util.List;
 import com.cda.simulateur.menu.action.Command;
 
 public final class Pwd extends Command {
-	private static final String vCheminEnCours = System.getProperty("user.dir");
-	protected static List<String> vCheminArray = new ArrayList<>(Arrays.asList(vCheminEnCours.split("\\\\")));
-	public static String adressCourante = vCheminEnCours;
-	public final static Pwd pwdInstance = new Pwd();
+	private static final String vCheminEnCours = System.getProperty("user.dir").toString().replace("\\", "/");
+	protected static List<String> vCheminArray = new ArrayList<>(Arrays.asList(vCheminEnCours.split("/")));
+	public static String vAdressCourante = vCheminEnCours;
+	public final static Pwd vPwdInstance = new Pwd();
 
 	private Pwd() {
 		super();
@@ -18,26 +18,27 @@ public final class Pwd extends Command {
 
 	// retourne le chemin du repertoire courant
 	public static Pwd getPwdinstance() {
-		return pwdInstance;
+		return vPwdInstance;
 	}
 
 	@Override
 	public void executer() {
-		StringBuilder sb = new StringBuilder();
-		for (String s : vCheminArray) {
-			sb.append(s);
-			sb.append("\\");
-		}
-		Pwd.setAdressCourante(sb.toString());
-		System.out.println(adressCourante);
+
+		Pwd.setAdressCourante(Pwd.getAdressCourante());
+		System.out.println(vAdressCourante);
 	}
 
 	public static String getAdressCourante() {
-		return adressCourante;
+		StringBuilder sb = new StringBuilder();
+		for (String s : vCheminArray) {
+			sb.append(s);
+			sb.append("/");
+		}
+		return sb.toString();
 	}
 
-	public static void setAdressCourante(String adressCourante) {
-		Pwd.adressCourante = adressCourante;
+	public static void setAdressCourante(String pAdressCourante) {
+		Pwd.vAdressCourante = pAdressCourante;
 	}
 
 	@Override
