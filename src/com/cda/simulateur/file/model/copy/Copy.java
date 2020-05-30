@@ -51,20 +51,14 @@ public class Copy extends Command {
 
 	}
 
-//	Copy() {
-//		super(ID, DESC);
-//	}
-//	public boolean executer() {
-//		return true;
-//	}
 	@Override
 	public void executer(String... pSaisie) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
-	public void executer(String... pSaisie) {
+	public void executer() {
 		// TODO Auto-generated method stub
+
 	}
 }
