@@ -7,9 +7,9 @@ import java.util.List;
 import com.cda.simulateur.menu.action.Command;
 
 public final class Pwd extends Command {
-	private static final String vCheminDeDebut = System.getProperty("user.dir");
-	protected static List<String> vCheminArray = new ArrayList<>(Arrays.asList(vCheminDeDebut.split("\\\\")));
-	public static String adressCourante = vCheminDeDebut;
+	private static final String vCheminEnCours = System.getProperty("user.dir");
+	protected static List<String> vCheminArray = new ArrayList<>(Arrays.asList(vCheminEnCours.split("\\\\")));
+	public static String adressCourante = vCheminEnCours;
 	public final static Pwd pwdInstance = new Pwd();
 
 	private Pwd() {

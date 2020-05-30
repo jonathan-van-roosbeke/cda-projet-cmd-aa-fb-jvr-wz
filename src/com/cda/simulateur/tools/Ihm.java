@@ -9,6 +9,7 @@ import com.cda.simulateur.menu.action.Help;
 import com.cda.simulateur.menu.action.History;
 import com.cda.simulateur.menu.action.HistoryClear;
 import com.cda.simulateur.repertory.model.Cd;
+import com.cda.simulateur.repertory.model.Ls;
 import com.cda.simulateur.repertory.model.Pwd;
 
 public class Ihm {
@@ -25,6 +26,7 @@ public class Ihm {
 		listCmd.put("pwd", Pwd.pwdInstance);
 		listCmd.put("histclear", HistoryClear.HistoryClearInstance);
 		listCmd.put("cd", Cd.cdInstance);
+		listCmd.put("ls", Ls.lsInstance);
 
 	}
 
