@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import com.cda.exceptions.FileErrorException;
 import com.cda.simulateur.menu.action.Command;
+import com.cda.simulateur.repertory.model.Pwd;
 
 public class Copy extends Command {
 	public static Copy copyInstance = new Copy();
@@ -25,17 +26,19 @@ public class Copy extends Command {
 			throw new FileErrorException("L'argument n'est pas correct");
 		}
 
-		File srcFile = new File(pSaisie[0]);
+//		File srcFile = new File(pSaisie[0]);
+		Pwd.setAdressCourante(Pwd.getAdressCourante());
+		File srcFile = new File(Pwd.getAdressCourante() + "/" + pSaisie[0]);
 		String fileName = pSaisie[0];
 		String destName;
 		File destFile;
 		if (fileName.indexOf('.') == -1) {
 			destName = fileName + "-2";
-			destFile = new File(destName);
+			destFile = new File(Pwd.getAdressCourante() + "/" + destName);
 		} else {
 			fileName = pSaisie[0].substring(0, pSaisie[0].lastIndexOf('.'));
 			String ext = pSaisie[0].substring(pSaisie[0].indexOf('.'));
-			destFile = new File(fileName + "-2" + ext);
+			destFile = new File(Pwd.getAdressCourante() + "/" + fileName + "-2" + ext);
 		}
 
 		fis = new FileInputStream(srcFile);
@@ -53,7 +56,7 @@ public class Copy extends Command {
 	}
 
 	@Override
-	public void executer() throws FileErrorException {
-		throw new FileErrorException("votre command manque argument");
+	public void executer() {
+		System.out.println("Manque argument");
 	}
 }
