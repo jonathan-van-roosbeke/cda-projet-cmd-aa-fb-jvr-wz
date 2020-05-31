@@ -6,6 +6,8 @@ import java.util.Scanner;
 
 import com.cda.exceptions.FileErrorException;
 import com.cda.simulateur.file.model.copy.Copy;
+import com.cda.simulateur.file.model.copy.Crd;
+import com.cda.simulateur.file.model.copy.Crf;
 import com.cda.simulateur.menu.action.Command;
 import com.cda.simulateur.menu.action.Exit;
 import com.cda.simulateur.menu.action.Help;
@@ -39,6 +41,8 @@ public class Ihm {
 		listCmd.put("dir", Dir.dirInstance);
 		listCmd.put("dirng", Dirng.dirngInstance);
 		listCmd.put("copy", Copy.copyInstance);
+		listCmd.put("crf", Crf.crfInstance);
+		listCmd.put("crd", Crd.crdInstance);
 	}
 
 	public static HashMap<String, Command> getListCmd() {
