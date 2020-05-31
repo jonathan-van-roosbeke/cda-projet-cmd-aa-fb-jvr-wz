@@ -1,25 +1,42 @@
 package com.cda.simulateur.repertory.model;
 
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.io.LineNumberReader;
+
 import com.cda.simulateur.menu.action.Command;
+import com.cda.simulateur.tools.Utils;
 
 public class Cat extends Command {
-	private static final String ID = "cat";
-	private static final String DESC = "Affiche le contenu du fichier s�lectionn�";
+	public final static Cat catInstance = new Cat();
 
-//	Cat() {
-//		super(ID, DESC);
-//	}
+	public Cat() {
+		super();
+
+	}
 
 	@Override
 	public void executer() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void executer(String... pSaisie) {
-		// TODO Auto-generated method stub
+		String result = Utils.stringCleaner(pSaisie);
+		String[] test = result.split(" ");
+		String strTempB = test[0];
+		InputStreamReader flog = null;
+		LineNumberReader llog = null;
+		String myLine = null;
 
+		try {
+			flog = new InputStreamReader(new FileInputStream(strTempB));
+			llog = new LineNumberReader(flog);
+			while ((myLine = llog.readLine()) != null) {
+				System.out.println(myLine);
+			}
+		} catch (Exception e) {
+			System.out.println("Fichier introuvable");
+		}
 	}
-
 }
