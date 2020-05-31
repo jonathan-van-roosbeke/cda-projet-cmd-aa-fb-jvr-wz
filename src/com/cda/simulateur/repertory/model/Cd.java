@@ -28,7 +28,7 @@ public final class Cd extends Command {
 
 	// verifie si le document existe dans le repertoire courant
 	private static boolean existInRepertory(String pSaisie) {
-		String vTempChemin = Pwd.getAdressCourante() + "/" + pSaisie;
+		String vTempChemin = Pwd.getAdressCourante() + pSaisie;
 		File file = new File(vTempChemin);
 		if (file.isDirectory()) {
 			return true;
@@ -122,6 +122,7 @@ public final class Cd extends Command {
 						vTempUrl = new ArrayList<>(Pwd.vCheminArray);
 					} else if (existInRepertory(s)) {
 						vTempUrl.add(s);
+						Pwd.vCheminArray.add(s);
 					} else {
 						erreurChemin();
 						vTempUrl.clear();
