@@ -9,56 +9,51 @@ import com.cda.exceptions.FileErrorException;
 import com.cda.simulateur.menu.action.Command;
 
 public class Copy extends Command {
+	public static Copy copyInstance = new Copy();
 
-	public static void copy(String args) throws FileErrorException, IOException {
+	Copy() {
+	}
+
+	@Override
+	public void executer(String... pSaisie) throws FileErrorException, IOException {
+		System.getProperty("user.dir");
+
 		FileInputStream fis = null;
 		FileOutputStream fos = null;
 
-		if (args.length() == 0) {
-			throw new FileErrorException("Il n'y pas de argument");
-		} else {
-			File srcFile = new File(args);
-			String fileName = args;
-			String destName;
-			File destFile;
-			if (fileName.indexOf('.') == -1) {
-				destName = fileName + "-2";
-				destFile = new File(destName);
-			} else {
-				fileName = args.substring(0, args.lastIndexOf('.'));
-				String ext = args.substring(args.indexOf('.'));
-				destFile = new File(fileName + "-2" + ext);
-			}
-			if (srcFile.exists() && destFile.exists()) {
-				fis = new FileInputStream(srcFile);
-				fos = new FileOutputStream(destFile);
-
-				byte[] buf = new byte[1024];
-				int len;
-				while ((len = fis.read(buf)) != -1) {
-					fos.write(buf, 0, len);
-				}
-				System.out.println("C'est reussie");
-			} else {
-				throw new FileErrorException("Le fichier n'existe pas");
-			}
-//			System.out.println("Fichier introuvable");
-			if (fos != null)
-				fos.close();
-			if (fis != null)
-				fis.close();
+		if (pSaisie[0].indexOf(" ") != -1) {
+			throw new FileErrorException("L'argument n'est pas correct");
 		}
 
+		File srcFile = new File(pSaisie[0]);
+		String fileName = pSaisie[0];
+		String destName;
+		File destFile;
+		if (fileName.indexOf('.') == -1) {
+			destName = fileName + "-2";
+			destFile = new File(destName);
+		} else {
+			fileName = pSaisie[0].substring(0, pSaisie[0].lastIndexOf('.'));
+			String ext = pSaisie[0].substring(pSaisie[0].indexOf('.'));
+			destFile = new File(fileName + "-2" + ext);
+		}
+
+		fis = new FileInputStream(srcFile);
+		fos = new FileOutputStream(destFile);
+
+		byte[] buf = new byte[1024];
+		int len;
+		while ((len = fis.read(buf)) != -1) {
+			fos.write(buf, 0, len);
+		}
+		if (fos != null)
+			fos.close();
+		if (fis != null)
+			fis.close();
 	}
 
 	@Override
-	public void executer(String... pSaisie) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void executer() {
-		// TODO Auto-generated method stub
-
+	public void executer() throws FileErrorException {
+		throw new FileErrorException("votre command manque argument");
 	}
 }
