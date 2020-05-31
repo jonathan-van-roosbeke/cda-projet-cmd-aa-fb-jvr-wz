@@ -33,6 +33,7 @@ public class Ihm {
 		listCmd.put("pwd", Pwd.vPwdInstance);
 		listCmd.put("histclear", HistoryClear.HistoryClearInstance);
 		listCmd.put("cd", Cd.cdInstance);
+		listCmd.put("cd..", Cd.cdInstance);
 		listCmd.put("river", River.isRiverInstance);
 		listCmd.put("isprime", IsPrime.isPrimeInstance);
 		listCmd.put("ls", Ls.lsInstance);

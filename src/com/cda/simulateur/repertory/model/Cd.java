@@ -119,9 +119,9 @@ public final class Cd extends Command {
 				for (String s : vListAdresse) {
 					if (s.equals("..")) {
 						goToParentDirectory();
+						vTempUrl = new ArrayList<>(Pwd.vCheminArray);
 					} else if (existInRepertory(s)) {
 						vTempUrl.add(s);
-						Pwd.vCheminArray.add(s);
 					} else {
 						erreurChemin();
 						vTempUrl.clear();
