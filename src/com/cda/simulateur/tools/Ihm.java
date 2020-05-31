@@ -18,6 +18,7 @@ import com.cda.simulateur.minijeux.River;
 import com.cda.simulateur.repertory.model.Cd;
 import com.cda.simulateur.repertory.model.Dir;
 import com.cda.simulateur.repertory.model.Dirng;
+import com.cda.simulateur.repertory.model.Find;
 import com.cda.simulateur.repertory.model.Ls;
 import com.cda.simulateur.repertory.model.Pwd;
 
@@ -41,6 +42,7 @@ public class Ihm {
 		listCmd.put("dir", Dir.dirInstance);
 		listCmd.put("dirng", Dirng.dirngInstance);
 		listCmd.put("copy", Copy.copyInstance);
+		listCmd.put("find", Find.findInstance);
 		listCmd.put("crf", Crf.crfInstance);
 		listCmd.put("crd", Crd.crdInstance);
 	}
