@@ -85,57 +85,42 @@ public final class Cd extends Command {
 		vAdresse = convertToValidUrl(vAdresse);
 		List<String> vListAdresse = convertiAdresseEntreeEnArray(vAdresse);
 
-		if (vListAdresse.size() == 1) {
-			if (vListAdresse.get(0).equals("..")) {
-				goToParentDirectory();
-			} else if (vAdresse.contains(":")) {
-				if (existAbsolute(vAdresse)) {
-					Pwd.vCheminArray.clear();
-					Pwd.vCheminArray.addAll(vListAdresse);
-				}
-
+		// le cas ou l'adresse contient un c: -> on verifie si le chemin abolue existe
+		if (vAdresse.contains(":")) {
+			if (existAbsolute(vAdresse)) {
+				Pwd.vCheminArray.clear();
+				Pwd.vCheminArray.addAll(vListAdresse);
 			} else {
-				if (existInRepertory(vListAdresse.get(0))) {
-					goToFolder(vListAdresse.get(0));
-				} else {
-					erreurChemin();
-				}
+				erreurChemin();
+				return;
 			}
 		} else {
-			// le cas ou l'adresse contient un c: -> on verifie si le chemin abolue existe
-			if (vAdresse.contains(":")) {
-				if (existAbsolute(vAdresse)) {
-					Pwd.vCheminArray.clear();
-					Pwd.vCheminArray.addAll(vListAdresse);
+			// le cas ou l'on se trouve dans un dossier et que a partir de ce dossier on
+			// remonte ou descend dans l'arborescence
+			List<String> vTempUrl = new ArrayList<>(Pwd.vCheminArray);
+			List<String> vBackupPwd = new ArrayList<>(Pwd.vCheminArray);
+			for (String s : vListAdresse) {
+				if (s.equals("..")) {
+					goToParentDirectory();
+					vTempUrl = new ArrayList<>(Pwd.vCheminArray);
+				} else if (s.equals(".")) {
+					// reste dans le repertoire courant
+				} else if (existInRepertory(s)) {
+					vTempUrl.add(s);
+					Pwd.vCheminArray.add(s);
 				} else {
 					erreurChemin();
+					vTempUrl.clear();
+					Pwd.vCheminArray.clear();
+					Pwd.vCheminArray.addAll(vBackupPwd);
 					return;
 				}
-			} else {
-				// le cas ou l'on se trouve dans un dossier et qu'on veut verifier si :
-				// "folder1/sub-folder2/sub-subfolder3
-				List<String> vTempUrl = new ArrayList<>(Pwd.vCheminArray);
-				List<String> vBackupPwd = new ArrayList<>(Pwd.vCheminArray);
-				for (String s : vListAdresse) {
-					if (s.equals("..")) {
-						goToParentDirectory();
-						vTempUrl = new ArrayList<>(Pwd.vCheminArray);
-					} else if (existInRepertory(s)) {
-						vTempUrl.add(s);
-						Pwd.vCheminArray.add(s);
-					} else {
-						erreurChemin();
-						vTempUrl.clear();
-						Pwd.vCheminArray.clear();
-						Pwd.vCheminArray.addAll(vBackupPwd);
-						return;
-					}
-				}
-				if (vTempUrl.size() > 0) {
-					Pwd.vCheminArray.clear();
-					Pwd.vCheminArray.addAll(vTempUrl);
-				}
+			}
+			if (vTempUrl.size() > 0) {
+				Pwd.vCheminArray.clear();
+				Pwd.vCheminArray.addAll(vTempUrl);
 			}
 		}
+
 	}
 }
