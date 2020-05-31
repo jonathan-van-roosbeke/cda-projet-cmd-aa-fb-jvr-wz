@@ -29,26 +29,27 @@ public class Find extends Command {
 			String print = (counter <= 1) ? "fichier trouve" : "fichers trouves";
 			System.out.println(counter + " " + print);
 			return;
-		}
-
-		if ("-ends".equals(args[0])) {
+		} else if ("-ends".equals(args[0])) {
 			findFileEndsWith(srcFile, args[1]);
 			String print = (counter <= 1) ? "fichier trouve" : "fichers trouves";
 			System.out.println(counter + " " + print);
-		}
-		if ("-starts".equals(args[0])) {
+		} else if ("-starts".equals(args[0])) {
 			findFileStartsWith(srcFile, args[1]);
 			String print = (counter <= 1) ? "fichier trouve" : "fichers trouves";
 			System.out.println(counter + " " + print);
-
+		} else {
+			findFile(srcFile, args[0]);
+			String print = (counter <= 1) ? "fichier trouve" : "fichers trouves";
+			System.out.println(counter + " " + print);
+			if (counter == 0) {
+				System.out.println("Ajouter un parametre...");
+			}
 		}
 
 	}
 
 	public static void findFileEndsWith(File dir, String str) {
-
 		File[] subfiles = dir.listFiles();
-
 		for (File f : subfiles) {
 			if (f.isDirectory()) {
 				findFileEndsWith(f, str);
@@ -60,9 +61,7 @@ public class Find extends Command {
 	}
 
 	public static void findFileStartsWith(File dir, String str) {
-
 		File[] subfiles = dir.listFiles();
-
 		for (File f : subfiles) {
 			if (f.isDirectory()) {
 				findFileStartsWith(f, str);
@@ -79,6 +78,18 @@ public class Find extends Command {
 			if (f.isDirectory()) {
 				findFileStartsEnds(f, p1, p2);
 			} else if (f.getName().startsWith(p1) && f.getName().endsWith(p2)) {
+				counter++;
+				System.out.println(f.getAbsolutePath());
+			}
+		}
+	}
+
+	public static void findFile(File dir, String p1) {
+		File[] subfiles = dir.listFiles();
+		for (File f : subfiles) {
+			if (f.isDirectory()) {
+				findFile(f, p1);
+			} else if (f.getName().contains(p1)) {
 				counter++;
 				System.out.println(f.getAbsolutePath());
 			}
