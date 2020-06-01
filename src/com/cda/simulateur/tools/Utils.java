@@ -1,6 +1,9 @@
 package com.cda.simulateur.tools;
 
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import com.cda.simulateur.repertory.model.Pwd;
 
@@ -26,5 +29,16 @@ public class Utils {
 		String regex = "\\s+";
 		String result = commande.replaceAll(regex, " ").trim();
 		return result;
+	}
+
+	public static void copieContenu(String pIn, String pOut) throws IOException {
+		int c;
+		FileReader in = new FileReader(pIn);
+		FileWriter out = new FileWriter(pOut);
+		while ((c = in.read()) != -1) {
+			out.write(c);
+		}
+		in.close();
+		out.close();
 	}
 }

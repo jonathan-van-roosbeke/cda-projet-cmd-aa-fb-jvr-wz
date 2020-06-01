@@ -6,6 +6,8 @@ import java.util.Scanner;
 
 import com.cda.exceptions.FileErrorException;
 import com.cda.simulateur.file.model.copy.Copy;
+import com.cda.simulateur.file.model.copy.Crd;
+import com.cda.simulateur.file.model.copy.Crf;
 import com.cda.simulateur.menu.action.Command;
 import com.cda.simulateur.menu.action.Exit;
 import com.cda.simulateur.menu.action.Help;
@@ -16,6 +18,7 @@ import com.cda.simulateur.minijeux.River;
 import com.cda.simulateur.repertory.model.Cd;
 import com.cda.simulateur.repertory.model.Dir;
 import com.cda.simulateur.repertory.model.Dirng;
+import com.cda.simulateur.repertory.model.Find;
 import com.cda.simulateur.repertory.model.Ls;
 import com.cda.simulateur.repertory.model.Pwd;
 
@@ -33,13 +36,15 @@ public class Ihm {
 		listCmd.put("pwd", Pwd.vPwdInstance);
 		listCmd.put("histclear", HistoryClear.HistoryClearInstance);
 		listCmd.put("cd", Cd.cdInstance);
-		listCmd.put("cd..", Cd.cdInstance);
 		listCmd.put("river", River.isRiverInstance);
 		listCmd.put("isprime", IsPrime.isPrimeInstance);
 		listCmd.put("ls", Ls.lsInstance);
 		listCmd.put("dir", Dir.dirInstance);
 		listCmd.put("dirng", Dirng.dirngInstance);
 		listCmd.put("copy", Copy.copyInstance);
+		listCmd.put("find", Find.findInstance);
+		listCmd.put("crf", Crf.crfInstance);
+		listCmd.put("crd", Crd.crdInstance);
 	}
 
 	public static HashMap<String, Command> getListCmd() {
