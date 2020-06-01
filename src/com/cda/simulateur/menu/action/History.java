@@ -24,7 +24,7 @@ public class History extends Command {
 	}
 
 	public static void ajouterCmd(String pCmd) {
-		if (pCmd.equals("exit") || pCmd.equals("help") || pCmd.equals("history")) {
+		if (pCmd.equals("exit") || pCmd.equals("help") || pCmd.equals("history") || pCmd.equals("histclear")) {
 
 		} else {
 			LISTCOMMAND.add(cmp, pCmd + " " + LocalDateTime.now().format(vDateFormat));
