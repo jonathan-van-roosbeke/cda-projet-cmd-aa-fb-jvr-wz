@@ -5,6 +5,7 @@ import java.io.File;
 import com.cda.simulateur.menu.action.Command;
 
 public class Ls extends Command {
+
 	public final static Ls lsInstance = new Ls();
 
 	private static Ls getLsInstance() {
@@ -13,10 +14,14 @@ public class Ls extends Command {
 
 	@Override
 	public void executer() {
-		File vCurDir = new File(Pwd.getAdressCourante());
-		File[] vFilesList = vCurDir.listFiles();
+		File vFolder = new File(Pwd.getAdressCourante());
+		File[] vFilesList = vFolder.listFiles();
 		for (File f : vFilesList) {
-			System.out.println(f.getName());
+			if (f.isDirectory()) {
+				System.out.println("<DIR>   " + f.getName());
+			} else {
+				System.out.println("<FILE>  " + f.getName());
+			}
 		}
 		System.out.println();
 	}
