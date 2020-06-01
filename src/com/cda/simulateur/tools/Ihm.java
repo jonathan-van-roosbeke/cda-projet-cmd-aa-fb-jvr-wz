@@ -7,6 +7,7 @@ import java.util.Scanner;
 import com.cda.exceptions.FileErrorException;
 import com.cda.simulateur.file.model.copy.Copy;
 import com.cda.simulateur.file.model.copy.Crd;
+import com.cda.simulateur.file.model.copy.Crf;
 import com.cda.simulateur.menu.action.Command;
 import com.cda.simulateur.menu.action.Exit;
 import com.cda.simulateur.menu.action.Help;
@@ -43,7 +44,7 @@ public class Ihm {
 		listCmd.put("dirng", Dirng.dirngInstance);
 		listCmd.put("copy", Copy.copyInstance);
 		listCmd.put("find", Find.findInstance);
-		// listCmd.put("crf", Crf.crfInstance);
+		listCmd.put("crf", Crf.crfInstance);
 		listCmd.put("crd", Crd.crdInstance);
 		listCmd.put("count", Count.countInstance);
 
@@ -72,7 +73,12 @@ public class Ihm {
 			System.out.println("saisissez une cmd");
 			cmd = sc.nextLine().toLowerCase().trim();
 
-			if (cmd.indexOf(" ") == -1) {
+			if (cmd.startsWith("cd.")) {
+				String commande = cmd.substring(0, 2);
+				String argument = cmd.substring(2);
+				Ihm.getAllCommand(commande).executer(argument);
+				History.ajouterCmd(commande);
+			} else if (cmd.indexOf(" ") == -1) {
 				Ihm.getAllCommand(cmd).executer();
 				History.ajouterCmd(cmd);
 			} else {
