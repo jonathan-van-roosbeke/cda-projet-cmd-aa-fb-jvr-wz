@@ -2,7 +2,7 @@ package com.cda.exceptions;
 
 public class FileErrorException extends Exception {
 
-	private static final long serialVersionUID = 1L;
+	private static final String message = "Fichier inexistant";
 
 	public FileErrorException() {
 
@@ -12,6 +12,10 @@ public class FileErrorException extends Exception {
 
 	public FileErrorException(String msg) {
 		super(msg);
+	}
+
+	public String getMessage() {
+		return message;
 	}
 
 }
