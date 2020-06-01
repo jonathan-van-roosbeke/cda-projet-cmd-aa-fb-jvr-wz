@@ -85,8 +85,10 @@ public class Ihm {
 				Ihm.getAllCommand(commande).executer(argument);
 				History.ajouterCmd(commande);
 			} else if (cmd.indexOf(" ") == -1) {
-				Ihm.getAllCommand(cmd).executer();
-				History.ajouterCmd(cmd);
+				if (verifierCmd(cmd)) {
+					Ihm.getAllCommand(cmd).executer();
+					History.ajouterCmd(cmd);
+				}
 			} else {
 				String commande = cmd.substring(0, cmd.indexOf(" "));
 				String arguments = cmd.substring(cmd.indexOf(" ") + 1).trim();
