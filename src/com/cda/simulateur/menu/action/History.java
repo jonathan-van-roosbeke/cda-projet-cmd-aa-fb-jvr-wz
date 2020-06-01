@@ -51,11 +51,3 @@ public class History extends Command {
 		return cmp;
 	}
 }
-
-/*
- * ajouter la commande "history" si la commande est �gale � history , le
- * programme affiche la liste des 10 derni�res commandes ( sans la commande
- * history ). Cette commande affiche ,en plus de la commande, les param�tres
- * pass�s � la commande et la date de l�ex�cution de la commande avec ce
- * format 11:40:22 03/10/2018.
- */
