@@ -16,6 +16,7 @@ import com.cda.simulateur.menu.action.HistoryClear;
 import com.cda.simulateur.minijeux.IsPrime;
 import com.cda.simulateur.minijeux.River;
 import com.cda.simulateur.repertory.model.Cd;
+import com.cda.simulateur.repertory.model.Count;
 import com.cda.simulateur.repertory.model.Dir;
 import com.cda.simulateur.repertory.model.Dirng;
 import com.cda.simulateur.repertory.model.Find;
@@ -45,6 +46,8 @@ public class Ihm {
 		listCmd.put("find", Find.findInstance);
 		listCmd.put("crf", Crf.crfInstance);
 		listCmd.put("crd", Crd.crdInstance);
+		listCmd.put("count", Count.countInstance);
+
 	}
 
 	public static HashMap<String, Command> getListCmd() {
@@ -70,7 +73,12 @@ public class Ihm {
 			System.out.println("saisissez une cmd");
 			cmd = sc.nextLine().toLowerCase().trim();
 
-			if (cmd.indexOf(" ") == -1) {
+			if (cmd.startsWith("cd.")) {
+				String commande = cmd.substring(0, 2);
+				String argument = cmd.substring(2);
+				Ihm.getAllCommand(commande).executer(argument);
+				History.ajouterCmd(commande);
+			} else if (cmd.indexOf(" ") == -1) {
 				Ihm.getAllCommand(cmd).executer();
 				History.ajouterCmd(cmd);
 			} else {
