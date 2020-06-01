@@ -6,11 +6,8 @@ import com.cda.simulateur.menu.action.Command;
 import com.cda.simulateur.tools.Utils;
 
 public class Find extends Command {
-<<<<<<< HEAD
-=======
 	public static Find findInstance = new Find();
 	private static int counter = 0;
->>>>>>> wei
 
 	private Find() {
 	}
@@ -21,8 +18,7 @@ public class Find extends Command {
 
 	@Override
 	public void executer(String... pSaisie) {
-<<<<<<< HEAD
-=======
+
 		counter = 0;
 		String arg = Utils.stringCleaner(pSaisie);
 		String[] args = arg.split(" ");
@@ -92,7 +88,6 @@ public class Find extends Command {
 			}
 		}
 	}
->>>>>>> wei
 
 	public static void findFile(File dir, String p1) {
 		File[] subfiles = dir.listFiles();

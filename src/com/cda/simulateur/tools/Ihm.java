@@ -43,13 +43,11 @@ public class Ihm {
 		listCmd.put("dir", Dir.dirInstance);
 		listCmd.put("dirng", Dirng.dirngInstance);
 		listCmd.put("copy", Copy.copyInstance);
-<<<<<<< HEAD
 		listCmd.put("cat", Cat.catInstance);
-=======
 		listCmd.put("find", Find.findInstance);
 		listCmd.put("crf", Crf.crfInstance);
 		listCmd.put("crd", Crd.crdInstance);
->>>>>>> wei
+
 	}
 
 	public static HashMap<String, Command> getListCmd() {
