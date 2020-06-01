@@ -71,7 +71,7 @@ public class Ihm {
 		Scanner sc = new Scanner(System.in);
 		String cmd;
 		do {
-			System.out.println("saisissez une cmd");
+			System.out.print(Pwd.getAdressCourante() + ": ");
 			cmd = sc.nextLine().toLowerCase().trim();
 
 			if (cmd.indexOf(" ") == -1) {
