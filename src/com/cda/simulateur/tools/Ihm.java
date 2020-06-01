@@ -15,6 +15,7 @@ import com.cda.simulateur.menu.action.History;
 import com.cda.simulateur.menu.action.HistoryClear;
 import com.cda.simulateur.minijeux.IsPrime;
 import com.cda.simulateur.minijeux.River;
+import com.cda.simulateur.repertory.model.Cat;
 import com.cda.simulateur.repertory.model.Cd;
 import com.cda.simulateur.repertory.model.Count;
 import com.cda.simulateur.repertory.model.Dir;
@@ -43,6 +44,7 @@ public class Ihm {
 		listCmd.put("dir", Dir.dirInstance);
 		listCmd.put("dirng", Dirng.dirngInstance);
 		listCmd.put("copy", Copy.copyInstance);
+		listCmd.put("cat", Cat.catInstance);
 		listCmd.put("find", Find.findInstance);
 		listCmd.put("crf", Crf.crfInstance);
 		listCmd.put("crd", Crd.crdInstance);
@@ -84,8 +86,10 @@ public class Ihm {
 			} else {
 				String commande = cmd.substring(0, cmd.indexOf(" "));
 				String arguments = cmd.substring(cmd.indexOf(" ") + 1).trim();
-				Ihm.getAllCommand(commande).executer(arguments);
-				History.ajouterCmd(commande);
+				if (verifierCmd(commande)) {
+					Ihm.getAllCommand(commande).executer(arguments);
+					History.ajouterCmd(commande);
+				}
 			}
 		} while (!Exit.exit);
 		sc.close();
@@ -162,5 +166,14 @@ public class Ihm {
 			System.out.println(saisie);
 		}
 		return saisie;
+	}
+
+	private static boolean verifierCmd(String pCmd) {
+		if (listCmd.containsKey(pCmd)) {
+			return true;
+		} else {
+			System.out.println("La commande " + pCmd + " n'est pas encore implenté.");
+			return false;
+		}
 	}
 }

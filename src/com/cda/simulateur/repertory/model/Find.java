@@ -18,6 +18,7 @@ public class Find extends Command {
 
 	@Override
 	public void executer(String... pSaisie) {
+
 		counter = 0;
 		String arg = Utils.stringCleaner(pSaisie);
 		String[] args = arg.split(" ");
@@ -99,4 +100,5 @@ public class Find extends Command {
 			}
 		}
 	}
+
 }

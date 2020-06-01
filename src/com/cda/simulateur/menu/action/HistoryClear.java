@@ -14,7 +14,7 @@ public class HistoryClear extends Command {
 
 	@Override
 	public void executer(String... pSaisie) {
-
+		History.LISTCOMMAND.clear();
 	}
 
 }
