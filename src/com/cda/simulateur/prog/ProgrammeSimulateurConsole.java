@@ -16,6 +16,5 @@ public class ProgrammeSimulateurConsole {
 		} catch (IOException e) {
 			System.out.println("Problem fichier");
 		}
-
 	}
 }
