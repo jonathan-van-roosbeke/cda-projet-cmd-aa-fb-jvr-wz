@@ -33,27 +33,52 @@ public class River extends Command {
 
 			if (test.length != 2) {
 				System.out
-						.println(test.length < 2 ? "Nombre de paramètre incorrect" : "Nombre de paramètres incorrects");
+						.println(test.length < 2 ? "nombre de paramètre incorrect" : "nombre de paramètres incorrects");
 			} else {
 				String strTempA = test[0];
 				String strTempB = test[1];
+				String messErreur = "";
+				String messErreurB = "saisir un nombre compris entre 0 " + Integer.MAX_VALUE;
 				int intTempA = 0;
 				int intTempB = 0;
 				int compteur = 0;
 				boolean river = true;
+				boolean erreur = false;
+				boolean erreurB = false;
 
 				try {
+					Utils.verifSaisieNombre(strTempA);
 					intTempA = Integer.parseInt(strTempA);
 				} catch (NumberFormatException nfe) {
-					System.out.println(strTempA + " n'est pas un entier");
+					if (Utils.verifSaisieNombre(strTempA)) {
+						erreur = true;
+						messErreur = strTempA + " n'est pas un entier";
+					} else {
+						erreurB = true;
+					}
 					river = false;
 				}
 
 				try {
+					Utils.verifSaisieNombre(strTempB);
 					intTempB = Integer.parseInt(strTempB);
 				} catch (NumberFormatException nfe) {
-					System.out.println(strTempB + " n'est pas un entier");
+					if (Utils.verifSaisieNombre(strTempB)) {
+						erreur = true;
+						messErreur = messErreur.isEmpty() ? strTempB + " n'est pas un entier"
+								: strTempA + " et " + strTempB + " ne sont pas des entiers.";
+					} else {
+						erreurB = true;
+					}
 					river = false;
+				}
+
+				if (erreur) {
+					System.out.println(messErreur);
+				}
+
+				if (erreurB) {
+					System.out.println(messErreurB);
 				}
 
 				while (intTempA != intTempB && river) {
