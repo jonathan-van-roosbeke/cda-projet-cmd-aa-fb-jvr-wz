@@ -75,7 +75,7 @@ public class Ihm {
 		Scanner sc = new Scanner(System.in);
 		String cmd;
 		do {
-			System.out.print(Pwd.getAdressCourante());
+			System.out.println(Pwd.getAdressCourante());
 
 			cmd = sc.nextLine().toLowerCase().trim();
 
@@ -176,7 +176,7 @@ public class Ihm {
 		if (listCmd.containsKey(pCmd)) {
 			return true;
 		} else {
-			System.out.println("La commande " + pCmd + " n'est pas encore implenté.");
+			System.out.println("La commande " + pCmd + " n'est pas encore implémentée");
 			return false;
 		}
 	}
