@@ -39,12 +39,8 @@ public class History extends Command {
 	private static boolean verifiList(String pCmd) {
 		String[] argSwitch = { "exit", "help", "history", "histclear", "pwd" };
 		List<String> arrayArgs = Arrays.asList(argSwitch);
-		if (arrayArgs.contains(pCmd)) {
-			return true;
-		} else {
 
-			return false;
-		}
+		return arrayArgs.contains(pCmd);
 	}
 
 	@Override
