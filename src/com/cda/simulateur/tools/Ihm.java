@@ -177,9 +177,14 @@ public class Ihm {
 	private static boolean verifierCmd(String pCmd) {
 		if (listCmd.containsKey(pCmd)) {
 			return true;
+
 		} else {
-			System.out.println("La commande " + pCmd + " n'est pas encore implenté.");
-			return false;
+			if (pCmd.equals("")) {
+				return false;
+			} else {
+				System.out.println("La commande " + pCmd + " n'est pas encore implenté.");
+				return false;
+			}
 		}
 	}
 }
