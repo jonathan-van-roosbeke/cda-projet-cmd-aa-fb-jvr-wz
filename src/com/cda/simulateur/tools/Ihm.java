@@ -20,6 +20,7 @@ import com.cda.simulateur.repertory.model.Cd;
 import com.cda.simulateur.repertory.model.Dir;
 import com.cda.simulateur.repertory.model.Dirng;
 import com.cda.simulateur.repertory.model.Find;
+import com.cda.simulateur.repertory.model.Getvars;
 import com.cda.simulateur.repertory.model.Ls;
 import com.cda.simulateur.repertory.model.Pwd;
 
@@ -48,6 +49,7 @@ public class Ihm {
 		listCmd.put("crf", Crf.crfInstance);
 		listCmd.put("crd", Crd.crdInstance);
 //		listCmd.put("fline", Fline.flineInstance);
+		listCmd.put("getvars", Getvars.getvarsInstance);
 
 	}
 
@@ -71,7 +73,7 @@ public class Ihm {
 		Scanner sc = new Scanner(System.in);
 		String cmd;
 		do {
-			System.out.println("saisissez une cmd");
+			System.out.println(Pwd.getAdressCourante());
 			cmd = sc.nextLine().toLowerCase().trim();
 
 			if (cmd.indexOf(" ") == -1) {
