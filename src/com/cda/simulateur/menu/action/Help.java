@@ -30,7 +30,6 @@ public class Help extends Command {
 	@Override
 	public void executer(String... pSaisie) {
 		System.out.println("Bonjour sur la console cda");
-
 		for (Map.Entry<String, String> entry : Help.LISTCMD.entrySet()) {
 			System.out.println(String.format("%-12s : %15s", entry.getKey(), entry.getValue()));
 		}
@@ -38,6 +37,9 @@ public class Help extends Command {
 
 	@Override
 	public void executer() {
-
+		System.out.println("Bonjour sur la console cda");
+		for (Map.Entry<String, String> entry : Help.LISTCMD.entrySet()) {
+			System.out.println(String.format("%-12s : %15s", entry.getKey(), entry.getValue()));
+		}
 	}
 }
