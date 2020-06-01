@@ -50,8 +50,6 @@ public class Ihm {
 		listCmd.put("crd", Crd.crdInstance);
 		listCmd.put("count", Count.countInstance);
 
-//		listCmd.put("fline", Fline.flineInstance);
-
 	}
 
 	public static HashMap<String, Command> getListCmd() {
@@ -74,7 +72,7 @@ public class Ihm {
 		Scanner sc = new Scanner(System.in);
 		String cmd;
 		do {
-			System.out.println("saisissez une cmd");
+			System.out.print(Pwd.getAdressCourante() + ": ");
 			cmd = sc.nextLine().toLowerCase().trim();
 
 			if (cmd.startsWith("cd.")) {
