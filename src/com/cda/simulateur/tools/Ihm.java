@@ -52,8 +52,6 @@ public class Ihm {
 		listCmd.put("count", Count.countInstance);
 //		listCmd.put("fline", Fline.flineInstance);
 		listCmd.put("getvars", Getvars.getvarsInstance);
-		listCmd.put("", Pwd.vPwdInstance);
-
 	}
 
 	public static HashMap<String, Command> getListCmd() {

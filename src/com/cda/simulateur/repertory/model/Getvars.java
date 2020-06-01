@@ -16,7 +16,7 @@ public class Getvars extends Command {
 	@Override
 	public void executer() throws FileErrorException {
 		Utils.environnement();
-		System.out.println("\n");
+		System.out.print("\n");
 		Utils.jvm();
 	}
 
@@ -25,8 +25,12 @@ public class Getvars extends Command {
 		String parametre = Utils.stringCleaner(pSaisie);
 		String[] test = parametre.split(" ");
 
-		if (test.length != 1) {
-
+		if (test.length == 2 && test[0].equals("-env") && test[1].equals("-prop")) {
+			executer();
+		} else if (test.length == 2 && test[0].equals("-prop") && test[1].equals("-env")) {
+			Utils.jvm();
+			System.out.print("\n");
+			Utils.environnement();
 		}
 	}
 }

@@ -58,7 +58,7 @@ public class Utils {
 	public static void environnement() {
 		Map<String, String> varEnv = System.getenv();
 		for (String varEnvNom : varEnv.keySet()) {
-			System.out.format("%s = %s%n", varEnvNom, varEnv.get(varEnvNom));
+			System.out.format("%-32s = %s%n", varEnvNom, varEnv.get(varEnvNom));
 		}
 	}
 
@@ -66,7 +66,7 @@ public class Utils {
 		Map<Object, Object> propJvm = System.getProperties();
 		for (Object propJvmNom : propJvm.keySet()) {
 			if (!(Utils.stringCleaner(System.getProperty((String) propJvmNom)).isEmpty())) {
-				System.out.format("%s = %s%n", propJvmNom, System.getProperty((String) propJvmNom));
+				System.out.format("%-32s = %s%n", propJvmNom, System.getProperty((String) propJvmNom));
 			}
 		}
 	}

@@ -23,9 +23,7 @@ public final class Pwd extends Command {
 
 	@Override
 	public void executer() {
-
 		Pwd.setAdressCourante(Pwd.getAdressCourante());
-		System.out.println(vAdressCourante + "\n");
 	}
 
 	public static String getAdressCourante() {
