@@ -8,7 +8,6 @@ import com.cda.exceptions.FileErrorException;
 import com.cda.simulateur.file.model.copy.Copy;
 import com.cda.simulateur.file.model.copy.Crd;
 import com.cda.simulateur.file.model.copy.Crf;
-import com.cda.simulateur.file.model.copy.Fline;
 import com.cda.simulateur.menu.action.Command;
 import com.cda.simulateur.menu.action.Exit;
 import com.cda.simulateur.menu.action.Help;
@@ -48,7 +47,7 @@ public class Ihm {
 		listCmd.put("find", Find.findInstance);
 		listCmd.put("crf", Crf.crfInstance);
 		listCmd.put("crd", Crd.crdInstance);
-		listCmd.put("fline", Fline.flineInstance);
+//		listCmd.put("fline", Fline.flineInstance);
 
 	}
 
@@ -169,7 +168,7 @@ public class Ihm {
 		if (listCmd.containsKey(pCmd)) {
 			return true;
 		} else {
-			System.out.println("La commande " + pCmd + " n'est pas encore implenté.");
+			System.out.println("La commande " + pCmd + " n'est pas encore implentï¿½.");
 			return false;
 		}
 	}
