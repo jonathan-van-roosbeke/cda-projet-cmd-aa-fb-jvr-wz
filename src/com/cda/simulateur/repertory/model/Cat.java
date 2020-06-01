@@ -30,7 +30,7 @@ public class Cat extends Command {
 		String myLine = null;
 
 		try {
-			flog = new InputStreamReader(new FileInputStream(strTempB));
+			flog = new InputStreamReader(new FileInputStream(Pwd.getAdressCourante() + strTempB));
 			llog = new LineNumberReader(flog);
 			while ((myLine = llog.readLine()) != null) {
 				System.out.println(myLine);
