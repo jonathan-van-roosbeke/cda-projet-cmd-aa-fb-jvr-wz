@@ -169,7 +169,7 @@ public class Ihm {
 		if (listCmd.containsKey(pCmd)) {
 			return true;
 		} else {
-			System.out.println("La commande " + pCmd + " n'est pas encore implenté.");
+			System.out.println("La commande " + pCmd + " n'est pas encore implentÃ©.");
 			return false;
 		}
 	}
