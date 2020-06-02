@@ -18,7 +18,7 @@ public final class Cd extends Command {
 	}
 
 	// verifie le chemin absolue
-	private static boolean existAbsolute(String pSaisie) {
+	public static boolean existAbsolute(String pSaisie) {
 		File vFile = new File(pSaisie);
 		if (vFile.isDirectory()) {
 			return true;

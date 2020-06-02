@@ -3,6 +3,8 @@ package com.cda.simulateur.menu.action;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class History extends Command {
 
@@ -24,8 +26,7 @@ public class History extends Command {
 	}
 
 	public static void ajouterCmd(String pCmd) {
-		if (pCmd.equals("exit") || pCmd.equals("help") || pCmd.equals("history") || pCmd.equals("histclear")) {
-
+		if (verifiList(pCmd)) {
 		} else {
 			LISTCOMMAND.add(cmp, pCmd + " " + LocalDateTime.now().format(vDateFormat));
 			cmp++;
@@ -33,6 +34,13 @@ public class History extends Command {
 		if (cmp == 10) {
 			cmp = 0;
 		}
+	}
+
+	private static boolean verifiList(String pCmd) {
+		String[] argSwitch = { "exit", "help", "history", "histclear", "pwd" };
+		List<String> arrayArgs = Arrays.asList(argSwitch);
+
+		return arrayArgs.contains(pCmd);
 	}
 
 	@Override

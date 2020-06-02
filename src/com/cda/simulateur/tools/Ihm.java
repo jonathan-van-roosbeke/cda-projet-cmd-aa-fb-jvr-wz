@@ -21,15 +21,13 @@ import com.cda.simulateur.repertory.model.Count;
 import com.cda.simulateur.repertory.model.Dir;
 import com.cda.simulateur.repertory.model.Dirng;
 import com.cda.simulateur.repertory.model.Find;
+import com.cda.simulateur.repertory.model.Getvars;
 import com.cda.simulateur.repertory.model.Ls;
 import com.cda.simulateur.repertory.model.Pwd;
 
 public class Ihm {
 	public static HashMap<String, Command> listCmd = new HashMap<>();
 	private final static Ihm ihmInstance = new Ihm();
-	private Scanner scanner;
-	private boolean interactif;
-	private boolean afficherCommentaire;
 
 	private Ihm() {
 		listCmd.put("exit", Exit.exitInstance);
@@ -49,6 +47,8 @@ public class Ihm {
 		listCmd.put("crf", Crf.crfInstance);
 		listCmd.put("crd", Crd.crdInstance);
 		listCmd.put("count", Count.countInstance);
+//		listCmd.put("fline", Fline.flineInstance);
+		listCmd.put("getvars", Getvars.getvarsInstance);
 	}
 
 	public static HashMap<String, Command> getListCmd() {
@@ -70,8 +70,10 @@ public class Ihm {
 	public static void lancerMenu() throws FileErrorException, IOException {
 		Scanner sc = new Scanner(System.in);
 		String cmd;
+
 		do {
-			System.out.print(Pwd.getAdressCourante() + ": ");
+			System.out.println(Pwd.getAdressCourante());
+
 			cmd = sc.nextLine().toLowerCase().trim();
 
 			if (cmd.startsWith("cd.")) {
@@ -80,8 +82,10 @@ public class Ihm {
 				Ihm.getAllCommand(commande).executer(argument);
 				History.ajouterCmd(commande);
 			} else if (cmd.indexOf(" ") == -1) {
-				Ihm.getAllCommand(cmd).executer();
-				History.ajouterCmd(cmd);
+				if (verifierCmd(cmd)) {
+					Ihm.getAllCommand(cmd).executer();
+					History.ajouterCmd(cmd);
+				}
 			} else {
 				String commande = cmd.substring(0, cmd.indexOf(" "));
 				String arguments = cmd.substring(cmd.indexOf(" ") + 1).trim();
@@ -94,85 +98,16 @@ public class Ihm {
 		sc.close();
 	}
 
-	public int lireEntier() {
-		System.out.print("< ");
-		int saisie = this.scanner.nextInt();
-		if (!interactif) {
-			System.out.print(saisie);
-		}
-		if (this.scanner.hasNextLine()) {
-			String vComm = this.scanner.nextLine();
-			if (this.afficherCommentaire) {
-				System.out.print(vComm);
-			}
-		}
-		System.out.println();
-		return saisie;
-	}
-
-	public long lireLong() {
-		System.out.print("< ");
-		long saisie = this.scanner.nextLong();
-		if (!interactif) {
-			System.out.print(saisie);
-		}
-		if (this.scanner.hasNextLine()) {
-			String vComm = this.scanner.nextLine();
-			if (this.afficherCommentaire) {
-				System.out.print(vComm);
-			}
-		}
-		System.out.println();
-		return saisie;
-	}
-
-	public float lireFloat() {
-		System.out.print("< ");
-		float saisie = this.scanner.nextFloat();
-		if (!interactif) {
-			System.out.print(saisie);
-		}
-		if (this.scanner.hasNextLine()) {
-			String vComm = this.scanner.nextLine();
-			if (this.afficherCommentaire) {
-				System.out.print(vComm);
-			}
-		}
-		System.out.println();
-		return saisie;
-	}
-
-	public String lireMot() {
-		System.out.print("< ");
-		String saisie = this.scanner.next();
-		if (!interactif) {
-			System.out.print(saisie);
-		}
-		if (this.scanner.hasNextLine()) {
-			String vComm = this.scanner.nextLine();
-			if (this.afficherCommentaire) {
-				System.out.print(vComm);
-			}
-		}
-		System.out.println();
-		return saisie;
-	}
-
-	public String lireLigne() {
-		System.out.print("< ");
-		String saisie = this.scanner.nextLine();
-		if (!interactif) {
-			System.out.println(saisie);
-		}
-		return saisie;
-	}
-
 	private static boolean verifierCmd(String pCmd) {
 		if (listCmd.containsKey(pCmd)) {
 			return true;
 		} else {
-			System.out.println("La commande " + pCmd + " n'est pas encore implenté.");
-			return false;
+			if (pCmd.equals("")) {
+				return false;
+			} else {
+				System.out.println("La commande " + pCmd + " n'est pas encore implenté.");
+				return false;
+			}
 		}
 	}
 }

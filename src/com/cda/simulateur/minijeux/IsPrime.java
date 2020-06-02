@@ -1,8 +1,5 @@
 package com.cda.simulateur.minijeux;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import com.cda.simulateur.menu.action.Command;
 import com.cda.simulateur.tools.Utils;
 
@@ -27,44 +24,36 @@ public class IsPrime extends Command {
 
 	@Override
 	public void executer(String... pArg) {
-		String nbreSaisi = Utils.stringCleaner(pArg);
+		String nbreSaisi = Utils.stringCleaner(pArg[0]);
 		String[] test = nbreSaisi.split(" ");
 		boolean prime = true;
 
-		Pattern p = Pattern.compile("\\D");
-		Matcher m = p.matcher(nbreSaisi);
-
-		if (pArg[0] == "" || test.length != 1 || m.find()) {
-			System.out.println("isprime prends un seul paramètre qui doit être un entier positif et compris entre 0 et "
-					+ Long.MAX_VALUE);
+		if (pArg[0] == "" || test.length != 1 || Utils.verifSaisieNombre(nbreSaisi) || Integer.parseInt(pArg[0]) < 0) {
+			System.out.println("isprime prends en paramètre un entier positif compris entre 0 et " + Integer.MAX_VALUE);
 		} else {
-			Long n = (long) 0;
-			if (n < 0) {
-				System.out.println(n + " n'est pas un entier positif");
-			} else {
-				try {
-					n = Long.parseLong(nbreSaisi);
-				} catch (NumberFormatException nfe) {
-					System.out.println(n + " est trop grand. Saisir un nombre entre 0 et " + Long.MAX_VALUE);
-					prime = false;
-				}
+			int n = 0;
+			try {
+				n = Integer.parseInt(nbreSaisi);
+			} catch (NumberFormatException nfe) {
+				System.out.println("saisir un nombre compris entre 0 " + Integer.MAX_VALUE);
+				prime = false;
+			}
 
-				boolean bool = false;
-				String result = n + " n'est pas un nombre premier";
-				if (n <= 1) {
-				} else {
-					for (long i = 2; i * i <= n; i++) {
-						if (n % i == 0) {
-							bool = true;
-						}
-					}
-					if (!bool) {
-						result = n + " est un nombre premier";
+			boolean bool = false;
+			String result = "no";
+			if (n <= 1) {
+			} else {
+				for (long i = 2; i * i <= n; i++) {
+					if (n % i == 0) {
+						bool = true;
 					}
 				}
-				if (prime) {
-					System.out.println(result);
+				if (!bool) {
+					result = "yes";
 				}
+			}
+			if (prime) {
+				System.out.println(result);
 			}
 		}
 	}
