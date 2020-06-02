@@ -1,10 +1,8 @@
 package com.cda.simulateur.tools;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import com.cda.exceptions.FileErrorException;
 import com.cda.simulateur.file.model.copy.Copy;
 import com.cda.simulateur.file.model.copy.Crd;
 import com.cda.simulateur.file.model.copy.Crf;
@@ -13,6 +11,7 @@ import com.cda.simulateur.menu.action.Exit;
 import com.cda.simulateur.menu.action.Help;
 import com.cda.simulateur.menu.action.History;
 import com.cda.simulateur.menu.action.HistoryClear;
+import com.cda.simulateur.menu.action.Now;
 import com.cda.simulateur.minijeux.IsPrime;
 import com.cda.simulateur.minijeux.River;
 import com.cda.simulateur.repertory.model.Cat;
@@ -49,6 +48,11 @@ public class Ihm {
 		listCmd.put("count", Count.countInstance);
 //		listCmd.put("fline", Fline.flineInstance);
 		listCmd.put("getvars", Getvars.getvarsInstance);
+<<<<<<< HEAD
+=======
+		listCmd.put("now", Now.NowInstance);
+
+>>>>>>> fethi
 	}
 
 	public static HashMap<String, Command> getListCmd() {
@@ -67,7 +71,7 @@ public class Ihm {
 		return listCmd.get(pCmd);
 	}
 
-	public static void lancerMenu() throws FileErrorException, IOException {
+	public static void lancerMenu() {
 		Scanner sc = new Scanner(System.in);
 		String cmd;
 

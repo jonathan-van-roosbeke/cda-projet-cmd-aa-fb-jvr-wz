@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 
-import com.cda.exceptions.FileErrorException;
 import com.cda.simulateur.menu.action.Command;
 import com.cda.simulateur.repertory.model.Pwd;
 import com.cda.simulateur.tools.Utils;
@@ -63,7 +62,7 @@ public class Crf extends Command {
 	}
 
 	@Override
-	public void executer() throws FileErrorException {
+	public void executer() {
 		executer("");
 	}
 }

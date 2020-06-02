@@ -1,8 +1,5 @@
 package com.cda.simulateur.repertory.model;
 
-import java.io.IOException;
-
-import com.cda.exceptions.FileErrorException;
 import com.cda.simulateur.menu.action.Command;
 import com.cda.simulateur.tools.Utils;
 
@@ -14,14 +11,14 @@ public class Getvars extends Command {
 	}
 
 	@Override
-	public void executer() throws FileErrorException {
+	public void executer() {
 		Utils.environnement();
 		System.out.print("\n");
 		Utils.jvm();
 	}
 
 	@Override
-	public void executer(String... pSaisie) throws FileErrorException, IOException {
+	public void executer(String... pSaisie) {
 		String parametre = Utils.stringCleaner(pSaisie);
 		String[] test = parametre.split(" ");
 
