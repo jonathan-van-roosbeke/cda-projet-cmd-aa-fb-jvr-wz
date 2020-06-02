@@ -5,6 +5,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 
+import com.cda.simulateur.tools.Utils;
+
 public class Now extends Command {
 	private static DateTimeFormatter vDateFormatHeure = DateTimeFormatter.ofPattern("hh:mm:ss");
 	private static DateTimeFormatter vDateFormatDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -22,39 +24,46 @@ public class Now extends Command {
 
 	@Override
 	public void executer(String... pSaisie) {
-		String encours = "";
-		Character[] argSwitch = { 'd', 't' };
-		List<Character> arrayArgs = Arrays.asList(argSwitch);
-		String test = pSaisie[0];
-		test = test.replace("-", "");
-		for (int i = 0; i < test.length(); i++) {
-			if (arrayArgs.contains(test.charAt(i))) {
 
-			} else {
-				encours += test.charAt(i);
-			}
+		if (pSaisie[0].startsWith("-")) {
+			String encours = "";
 
-		}
-		if (encours.equals("")) {
+			String test = pSaisie[0];
+			Character[] argSwitch = { 'd', 't' };
+			List<Character> arrayArgs = Arrays.asList(argSwitch);
+			test = Utils.removeDuplicateCharacter(test).replace("-", "");
 			for (int i = 0; i < test.length(); i++) {
-				char charEncour = test.charAt(i);
-				switch (arrayArgs.indexOf(charEncour)) {
+				if (arrayArgs.contains(test.charAt(i))) {
 
-				case 0:
-					System.out.print(LocalDateTime.now().format(vDateFormatDate) + " ");
-					break;
-				case 1:
-					System.out.print(LocalDateTime.now().format(vDateFormatHeure) + " ");
-					break;
-
-				default:
-					break;
+				} else {
+					encours += test.charAt(i);
 				}
+
 			}
+			if (encours.equals("")) {
+				for (int i = 0; i < test.length(); i++) {
+					char charEncour = test.charAt(i);
+					switch (arrayArgs.indexOf(charEncour)) {
+
+					case 0:
+						System.out.print(LocalDateTime.now().format(vDateFormatDate) + " ");
+						break;
+					case 1:
+						System.out.print(LocalDateTime.now().format(vDateFormatHeure) + " ");
+						break;
+
+					default:
+						break;
+					}
+				}
+			} else {
+				System.out.println(" unknown option -" + encours);
+			}
+			System.out.println();
+
 		} else {
-			System.out.println(" unknown option -" + encours);
+			System.out.println("l'option doit commencer par - ");
 		}
-		System.out.println();
 	}
 }
 
