@@ -5,7 +5,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import com.cda.exceptions.FileErrorException;
 import com.cda.simulateur.menu.action.Command;
 import com.cda.simulateur.repertory.model.Pwd;
 
@@ -46,7 +45,7 @@ public class Crd extends Command {
 	}
 
 	@Override
-	public void executer() throws FileErrorException {
+	public void executer() {
 		executer("");
 	}
 }

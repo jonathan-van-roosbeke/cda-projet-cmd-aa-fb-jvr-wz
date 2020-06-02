@@ -1,9 +1,7 @@
 package com.cda.simulateur.repertory.model;
 
 import java.io.File;
-import java.io.IOException;
 
-import com.cda.exceptions.FileErrorException;
 import com.cda.simulateur.menu.action.Command;
 
 public class Count extends Command {
@@ -78,14 +76,14 @@ public class Count extends Command {
 	}
 
 	@Override
-	public void executer() throws FileErrorException {
+	public void executer() {
 		nombreFichier = countFichier();
 		afficheNombreFichier(nombreFichier[1]);
 		afficheNombreFichier(nombreFichier[0]);
 	}
 
 	@Override
-	public void executer(String... pSaisie) throws FileErrorException, IOException {
+	public void executer(String... pSaisie) {
 		nombreFichier = countFichier();
 		String[] vArguments = pSaisie[0].split(" ");
 
