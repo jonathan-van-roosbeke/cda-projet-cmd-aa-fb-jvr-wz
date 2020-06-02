@@ -1,5 +1,6 @@
 package com.cda.simulateur.prog;
 
+import com.cda.simulateur.menu.action.Now;
 import com.cda.simulateur.tools.Ihm;
 
 public class ProgrammeSimulateurConsole {
@@ -10,7 +11,7 @@ public class ProgrammeSimulateurConsole {
 		if (proprieteLancement != null) {
 			System.setProperty("user.dir", proprieteLancement);
 		}
-
+		Now.nowInstance.executer("-t-t");
 		Ihm.lancerMenu();
 	}
 }

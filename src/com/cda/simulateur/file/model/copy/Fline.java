@@ -35,7 +35,7 @@ public class Fline extends Command {
 		try {
 			fr = new FileReader(file);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		BufferedReader br = new BufferedReader(fr);
@@ -44,13 +44,13 @@ public class Fline extends Command {
 				nbrLine++;
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		try {
 			fr.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		System.out.println("Nombre de lignes dans le fichier : " + nbrLine);
