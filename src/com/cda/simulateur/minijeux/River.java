@@ -25,20 +25,21 @@ public class River extends Command {
 
 	@Override
 	public void executer(String... pArg) {
+		String resultat = "";
 		if (pArg[0].equals("")) {
-			System.out.println("river prends 2 entiers en paramètres");
+			System.out.println("River prends 2 entiers en paramètres.\n");
 		} else {
 			String result = Utils.stringCleaner(pArg);
 			String[] test = result.split(" ");
 
 			if (test.length != 2) {
-				System.out
-						.println(test.length < 2 ? "nombre de paramètre incorrect" : "nombre de paramètres incorrects");
+				System.out.println(
+						test.length < 2 ? "Nombre de paramètre incorrect.\n" : "Nombre de paramètres incorrects.\n");
 			} else {
 				String strTempA = test[0];
 				String strTempB = test[1];
 				String messErreur = "";
-				String messErreurB = "saisir un nombre compris entre 0 " + Integer.MAX_VALUE;
+				String messErreurB = "saisir un nombre compris entre 0 " + Integer.MAX_VALUE + ".\n";
 				int intTempA = 0;
 				int intTempB = 0;
 				int compteur = 0;
@@ -52,7 +53,7 @@ public class River extends Command {
 				} catch (NumberFormatException nfe) {
 					if (Utils.verifSaisieNombre(strTempA)) {
 						erreur = true;
-						messErreur = strTempA + " n'est pas un entier";
+						messErreur = strTempA + " n'est pas un entier.\n";
 					} else {
 						erreurB = true;
 					}
@@ -65,8 +66,8 @@ public class River extends Command {
 				} catch (NumberFormatException nfe) {
 					if (Utils.verifSaisieNombre(strTempB)) {
 						erreur = true;
-						messErreur = messErreur.isEmpty() ? strTempB + " n'est pas un entier"
-								: strTempA + " et " + strTempB + " ne sont pas des entiers.";
+						messErreur = messErreur.isEmpty() ? strTempB + " n'est pas un entier.\n"
+								: strTempA + " et " + strTempB + " ne sont pas des entiers.\n";
 					} else {
 						erreurB = true;
 					}
@@ -95,13 +96,13 @@ public class River extends Command {
 					strTempB = String.valueOf(intTempB);
 					compteur++;
 					if (compteur == 5000000) {
-						result = ("délai expiré");
+						System.out.println("délai expiré\n");
 						return;
 					}
 
 					if (intTempA == intTempB) {
 						river = false;
-						System.out.println(strTempA);
+						System.out.println(strTempA + "\n");
 					}
 				}
 			}

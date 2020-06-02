@@ -50,6 +50,7 @@ public final class Cd extends Command {
 
 	@Override
 	public void executer() {
+		System.out.println();
 	}
 
 	@Override
