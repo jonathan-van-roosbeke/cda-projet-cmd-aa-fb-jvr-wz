@@ -48,11 +48,8 @@ public class Ihm {
 		listCmd.put("count", Count.countInstance);
 //		listCmd.put("fline", Fline.flineInstance);
 		listCmd.put("getvars", Getvars.getvarsInstance);
-<<<<<<< HEAD
-=======
-		listCmd.put("now", Now.NowInstance);
+		listCmd.put("now", Now.nowInstance);
 
->>>>>>> fethi
 	}
 
 	public static HashMap<String, Command> getListCmd() {
