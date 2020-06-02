@@ -1,6 +1,5 @@
 package com.cda.simulateur.repertory.model;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -15,25 +14,6 @@ public final class Cd extends Command {
 
 	private Cd() {
 		super();
-	}
-
-	// verifie le chemin absolue
-	public static boolean existAbsolute(String pSaisie) {
-		File vFile = new File(pSaisie);
-		if (vFile.isDirectory()) {
-			return true;
-		}
-		return false;
-	}
-
-	// verifie si le document existe dans le repertoire courant
-	private static boolean existInRepertory(String pSaisie) {
-		String vTempChemin = Pwd.getAdressCourante() + pSaisie;
-		File file = new File(vTempChemin);
-		if (file.isDirectory()) {
-			return true;
-		}
-		return false;
 	}
 
 	// va dans le dossier parent
@@ -80,7 +60,7 @@ public final class Cd extends Command {
 
 		// le cas ou l'adresse contient un c: -> on verifie si le chemin abolue existe
 		if (vAdresse.contains(":")) {
-			if (existAbsolute(vAdresse)) {
+			if (Utils.existAbsolute(vAdresse)) {
 				Pwd.vCheminArray.clear();
 				Pwd.vCheminArray.addAll(vListAdresse);
 			} else {
@@ -98,7 +78,7 @@ public final class Cd extends Command {
 					vTempUrl = new ArrayList<>(Pwd.vCheminArray);
 				} else if (s.equals(".")) {
 					// reste dans le repertoire courant
-				} else if (existInRepertory(s)) {
+				} else if (Utils.existInRepertory(s)) {
 					vTempUrl.add(s);
 					Pwd.vCheminArray.add(s);
 				} else {
