@@ -5,8 +5,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 
-import com.cda.simulateur.tools.Utils;
-
 public class Now extends Command {
 	private static DateTimeFormatter vDateFormatHeure = DateTimeFormatter.ofPattern("hh:mm:ss");
 	private static DateTimeFormatter vDateFormatDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -24,36 +22,39 @@ public class Now extends Command {
 
 	@Override
 	public void executer(String... pSaisie) {
-		switch (verifArgs(pSaisie)) {
-		case -1:
-			System.out.println("il est temps d'aller dormir");
-			break;
-		case 0:
-			System.out.println(LocalDateTime.now().format(vDateFormatHeure));
-			break;
-		case 1:
-			System.out.println(LocalDateTime.now().format(vDateFormatDate));
-			break;
-		case 3:
-			System.out.println(
-					LocalDateTime.now().format(vDateFormatHeure) + " " + LocalDateTime.now().format(vDateFormatDate));
-			break;
-		case 4:
-			System.out.println(
-					LocalDateTime.now().format(vDateFormatHeure) + " " + LocalDateTime.now().format(vDateFormatDate));
-			break;
-		default:
-			break;
+		String encours = "";
+		Character[] argSwitch = { 'd', 't' };
+		List<Character> arrayArgs = Arrays.asList(argSwitch);
+		String test = pSaisie[0];
+		test = test.replace("-", "");
+		for (int i = 0; i < test.length(); i++) {
+			if (arrayArgs.contains(test.charAt(i))) {
+
+			} else {
+				encours += test.charAt(i);
+			}
+
 		}
-	}
+		if (encours.equals("")) {
+			for (int i = 0; i < test.length(); i++) {
+				char charEncour = test.charAt(i);
+				switch (arrayArgs.indexOf(charEncour)) {
 
-	public static int verifArgs(String... pSaisie) {
-		String[] argSwitch = { "-d", "-t", "-dt", "-td" };
-		List<String> arrayArgs = Arrays.asList(argSwitch);
-		String arg = Utils.stringCleaner(pSaisie);
-		String[] args = arg.split(" ");
+				case 0:
+					System.out.print(LocalDateTime.now().format(vDateFormatDate) + " ");
+					break;
+				case 1:
+					System.out.print(LocalDateTime.now().format(vDateFormatHeure) + " ");
+					break;
 
-		return arrayArgs.indexOf(args[0]);
+				default:
+					break;
+				}
+			}
+		} else {
+			System.out.println(" unknown option -" + encours);
+		}
+		System.out.println();
 	}
 }
 
@@ -61,7 +62,8 @@ public class Now extends Command {
  * "now" affiche l'heure et/ou la date système.
  * 
  * now affiche "il est grand temps d'aller dormir ! " now -d 11:42:22 now -t
- * 03/10/2020 now -dt 11:42:22 03/10/2020 now -td 11:42:22 03/10/2020 now -t -d
- * 11:42:22 03/10/2020 now -d -t 11:42:22 03/10/2020 now -r unknown option -r
- * now -ty unknow option -y
+ * 03/10/2020 now -d -t 11:42:22 03/10/2020 now -t -
+ * 
+ * d 11:42:22 03/10/2020 now -t -d 11:42:22 03/10/2020 now -d -t 11:42:22
+ * 03/10/2020 now -r unknown option -r now -ty unknow option -y
  */
