@@ -2,7 +2,6 @@ package com.cda.simulateur.file.model.copy;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
@@ -31,15 +30,8 @@ public class Fline extends Command {
 		String arg = Utils.stringCleaner(pSaisie);
 		String[] args = arg.split(" ");
 		File file = new File(args[0]);
-		FileReader fr = null;
-		try {
-			fr = new FileReader(file);
-		} catch (FileNotFoundException e) {
 
-			e.printStackTrace();
-		}
-		BufferedReader br = new BufferedReader(fr);
-		try {
+		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 			while ((str = br.readLine()) != null) {
 				nbrLine++;
 			}
@@ -47,12 +39,7 @@ public class Fline extends Command {
 
 			e.printStackTrace();
 		}
-		try {
-			fr.close();
-		} catch (IOException e) {
 
-			e.printStackTrace();
-		}
 		System.out.println("Nombre de lignes dans le fichier : " + nbrLine);
 	}
 

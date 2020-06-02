@@ -11,7 +11,7 @@ public class ProgrammeSimulateurConsole {
 		if (proprieteLancement != null) {
 			System.setProperty("user.dir", proprieteLancement);
 		}
-		Now.nowInstance.executer("-t-t");
+		Now.nowInstance.executer("ts");
 		Ihm.lancerMenu();
 	}
 }
