@@ -70,8 +70,8 @@ public class Count extends Command {
 	@Override
 	public void executer() {
 		nombreFichier = countFichier();
+		afficheNombreRepertoire(nombreFichier[0]);
 		afficheNombreFichier(nombreFichier[1]);
-		afficheNombreFichier(nombreFichier[0]);
 	}
 
 	@Override
