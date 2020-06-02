@@ -16,11 +16,13 @@ public class Ls extends Command {
 	public void executer() {
 		File vFolder = new File(Pwd.getAdressCourante());
 		File[] vFilesList = vFolder.listFiles();
-		for (File f : vFilesList) {
-			if (f.isDirectory()) {
-				System.out.println("<DIR>   " + f.getName());
-			} else {
-				System.out.println("<FILE>  " + f.getName());
+		if (vFilesList != null) {
+			for (File f : vFilesList) {
+				if (f.isDirectory() && f.canWrite() && f.canRead() && f.canExecute()) {
+					System.out.println("<DIR>   " + f.getName());
+				} else if (f.isFile()) {
+					System.out.println("<FILE>  " + f.getName());
+				}
 			}
 		}
 		System.out.println();
