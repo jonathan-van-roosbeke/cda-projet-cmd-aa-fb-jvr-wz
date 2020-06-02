@@ -4,9 +4,12 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import com.cda.simulateur.repertory.model.Pwd;
 
@@ -56,18 +59,25 @@ public class Utils {
 	}
 
 	public static void environnement() {
-		Map<String, String> varEnv = System.getenv();
-		for (String varEnvNom : varEnv.keySet()) {
-			System.out.format("%-32s = %s%n", varEnvNom, varEnv.get(varEnvNom));
-		}
+		Map<String, String> properties = System.getenv();
+
+		LinkedHashMap<String, String> collect = properties.entrySet().stream()
+				.collect(Collectors.toMap(k -> (String) k.getKey(), e -> (String) e.getValue())).entrySet().stream()
+				.sorted(Map.Entry.comparingByKey()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
+						(oldValue, newValue) -> oldValue, LinkedHashMap::new));
+
+		collect.forEach((k, e) -> System.out.format("%-32s = %s%n", k, e));
 	}
 
 	public static void jvm() {
-		Map<Object, Object> propJvm = System.getProperties();
-		for (Object propJvmNom : propJvm.keySet()) {
-			if (!(Utils.stringCleaner(System.getProperty((String) propJvmNom)).isEmpty())) {
-				System.out.format("%-32s = %s%n", propJvmNom, System.getProperty((String) propJvmNom));
-			}
-		}
+		Properties properties = System.getProperties();
+
+		LinkedHashMap<String, String> collect = properties.entrySet().stream()
+				.collect(Collectors.toMap(k -> (String) k.getKey(), e -> (String) e.getValue())).entrySet().stream()
+				.sorted(Map.Entry.comparingByKey()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
+						(oldValue, newValue) -> oldValue, LinkedHashMap::new));
+
+		collect.forEach((k, e) -> System.out.format("%-32s = %s%n", k, e));
 	}
+
 }
