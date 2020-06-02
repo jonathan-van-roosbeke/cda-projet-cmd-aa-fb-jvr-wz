@@ -49,7 +49,6 @@ public class Ihm {
 		listCmd.put("crf", Crf.crfInstance);
 		listCmd.put("crd", Crd.crdInstance);
 		listCmd.put("count", Count.countInstance);
-
 	}
 
 	public static HashMap<String, Command> getListCmd() {

@@ -43,13 +43,6 @@ public final class Cd extends Command {
 		}
 	}
 
-	// va dans le dossier courant
-	private void goToFolder(String pFolder) {
-		String vTempChemin = Pwd.getAdressCourante() + "/" + pFolder;
-		File vFile = new File(vTempChemin);
-		Pwd.vCheminArray.add(pFolder);
-	}
-
 	// converti l'adresse c:/windows -> [c:, windows]
 	private List<String> convertiAdresseEntreeEnArray(String pAdresse) {
 		List<String> vAdresseArray = new LinkedList<String>(Arrays.asList(pAdresse.split("/")));
