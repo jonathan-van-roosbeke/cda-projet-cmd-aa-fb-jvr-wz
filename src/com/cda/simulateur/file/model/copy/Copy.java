@@ -2,6 +2,7 @@ package com.cda.simulateur.file.model.copy;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -16,7 +17,6 @@ public class Copy extends Command {
 
 	@Override
 	public void executer(String... pSaisie) {
-		System.getProperty("user.dir");
 
 		FileInputStream fis = null;
 		FileOutputStream fos = null;
@@ -39,13 +39,25 @@ public class Copy extends Command {
 				String ext = pSaisie[0].substring(pSaisie[0].indexOf('.'));
 				destFile = new File(Pwd.getAdressCourante() + "/" + fileName + "-2" + ext);
 			}
-			fis = new FileInputStream(srcFile);
-			fos = new FileOutputStream(destFile);
-			byte[] buf = new byte[1024];
-			int len;
-			while ((len = fis.read(buf)) != -1) {
-				fos.write(buf, 0, len);
+
+			try {
+				if (srcFile.exists()) {
+					fis = new FileInputStream(srcFile);
+					fos = new FileOutputStream(destFile);
+
+					byte[] buf = new byte[1024];
+					int len;
+					while ((len = fis.read(buf)) != -1) {
+						fos.write(buf, 0, len);
+					}
+					System.out.println("C'est reussie");
+				} else {
+					System.out.println("Le fichier n'existe pas");
+				}
+			} catch (FileNotFoundException e) {
+				System.out.println("Fichier introuvable");
 			}
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
