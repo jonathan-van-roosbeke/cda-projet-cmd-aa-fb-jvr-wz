@@ -31,6 +31,7 @@ public class Ihm {
 
 	private Ihm() {
 		listCmd.put("exit", Exit.exitInstance);
+		listCmd.put("quit", Exit.exitInstance);
 		listCmd.put("help", Help.help);
 		listCmd.put("history", History.HistoryInstance);
 		listCmd.put("pwd", Pwd.vPwdInstance);
