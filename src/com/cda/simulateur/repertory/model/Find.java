@@ -37,13 +37,13 @@ public class Find extends Command {
 				return;
 			}
 		}
-		if ("-ends".equals(args[0])) {
+		if ("-ends".equals(args[0]) && args.length > 1) {
 			findFileEndsWith(srcFile, args[1]);
 			String print = (counter <= 1) ? "fichier trouve" : "fichers trouves";
 			System.out.println(counter + " " + print);
 			return;
 		}
-		if ("-starts".equals(args[0])) {
+		if ("-starts".equals(args[0]) && args.length > 1) {
 			findFileStartsWith(srcFile, args[1]);
 			String print = (counter <= 1) ? "fichier trouve" : "fichers trouves";
 			System.out.println(counter + " " + print);
