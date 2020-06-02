@@ -3,6 +3,7 @@ package com.cda.simulateur.repertory.model;
 import java.io.File;
 
 import com.cda.simulateur.menu.action.Command;
+import com.cda.simulateur.tools.Utils;
 
 public class Count extends Command {
 
@@ -31,9 +32,8 @@ public class Count extends Command {
 	}
 
 	private void checkArgument(String pArgument) {
-
 		String vNonValidArgument = "";
-
+		pArgument = Utils.removeDuplicateCharacter(pArgument);
 		for (int i = 0; i < pArgument.length(); i++) {
 			if (pArgument.charAt(i) != '-' && pArgument.charAt(i) != 'd' && pArgument.charAt(i) != 'f') {
 				vNonValidArgument += pArgument.charAt(i);
@@ -41,27 +41,19 @@ public class Count extends Command {
 		}
 
 		if (vNonValidArgument.length() == 0) {
-			switch (pArgument) {
+			for (int i = 0; i < pArgument.length(); i++) {
+				switch (pArgument.charAt(i)) {
 
-			case "-f":
-				afficheNombreFichier(nombreFichier[1]);
-				break;
+				case 'f':
+					afficheNombreFichier(nombreFichier[1]);
+					break;
 
-			case "-d":
-				afficheNombreRepertoire(nombreFichier[0]);
-				break;
-
-			case "-df":
-				afficheNombreRepertoire(nombreFichier[0]);
-				afficheNombreFichier(nombreFichier[1]);
-				break;
-
-			case "-fd":
-				afficheNombreFichier(nombreFichier[1]);
-				afficheNombreRepertoire(nombreFichier[0]);
-				break;
-
+				case 'd':
+					afficheNombreRepertoire(nombreFichier[0]);
+					break;
+				}
 			}
+
 		} else {
 			System.out.println("unknown option -" + vNonValidArgument);
 		}
@@ -78,8 +70,8 @@ public class Count extends Command {
 	@Override
 	public void executer() {
 		nombreFichier = countFichier();
+		afficheNombreRepertoire(nombreFichier[0]);
 		afficheNombreFichier(nombreFichier[1]);
-		afficheNombreFichier(nombreFichier[0]);
 	}
 
 	@Override

@@ -5,8 +5,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -80,4 +82,17 @@ public class Utils {
 		collect.forEach((k, e) -> System.out.format("%-32s = %s%n", k, e));
 	}
 
+	public static String removeDuplicateCharacter(String pSaisie) {
+		char[] chars = pSaisie.toCharArray();
+		Set<Character> charSet = new LinkedHashSet<Character>();
+		for (char c : chars) {
+			charSet.add(c);
+		}
+
+		StringBuilder sb = new StringBuilder();
+		for (Character character : charSet) {
+			sb.append(character);
+		}
+		return sb.toString();
+	}
 }
