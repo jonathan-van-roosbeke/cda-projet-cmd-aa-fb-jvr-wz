@@ -6,6 +6,7 @@ import java.util.Scanner;
 import com.cda.simulateur.file.model.copy.Copy;
 import com.cda.simulateur.file.model.copy.Crd;
 import com.cda.simulateur.file.model.copy.Crf;
+import com.cda.simulateur.file.model.copy.Fline;
 import com.cda.simulateur.menu.action.Command;
 import com.cda.simulateur.menu.action.Exit;
 import com.cda.simulateur.menu.action.Help;
@@ -27,6 +28,7 @@ import com.cda.simulateur.repertory.model.Pwd;
 public class Ihm {
 	public static HashMap<String, Command> listCmd = new HashMap<>();
 	private final static Ihm ihmInstance = new Ihm();
+	public static String commande;
 
 	private Ihm() {
 		listCmd.put("exit", Exit.exitInstance);
@@ -46,7 +48,7 @@ public class Ihm {
 		listCmd.put("crf", Crf.crfInstance);
 		listCmd.put("crd", Crd.crdInstance);
 		listCmd.put("count", Count.countInstance);
-//		listCmd.put("fline", Fline.flineInstance);
+		listCmd.put("fline", Fline.flineInstance);
 		listCmd.put("getvars", Getvars.getvarsInstance);
 		listCmd.put("now", Now.nowInstance);
 
@@ -76,6 +78,7 @@ public class Ihm {
 			System.out.println(Pwd.getAdressCourante());
 
 			cmd = sc.nextLine().toLowerCase().trim();
+			commande = cmd;
 
 			if (cmd.startsWith("cd.")) {
 				String commande = cmd.substring(0, 2);
@@ -106,7 +109,8 @@ public class Ihm {
 			if (pCmd.equals("")) {
 				return false;
 			} else {
-				System.out.println("La commande " + pCmd + " n'est pas encore implenté.");
+				System.out.println("'" + pCmd + "' n’est pas reconnu en tant que commande interne\r\n"
+						+ "ou externe, un programme exécutable ou un fichier de commandes.\r\n");
 				return false;
 			}
 		}

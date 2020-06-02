@@ -19,6 +19,8 @@ public class Dirng extends Command {
 
 	@Override
 	public void executer(String... pSaisie) {
-
+		Dir.dirInstance.executer(pSaisie);
+		System.out.println("Nombre de dossier = " + Dir.dirInstance.vNombreDossier);
+		System.out.println("Nombre de fichier = " + Dir.dirInstance.vNombreFichier);
 	}
 }

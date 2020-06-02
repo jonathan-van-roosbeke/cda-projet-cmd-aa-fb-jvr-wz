@@ -14,11 +14,12 @@ public class Find extends Command {
 
 	@Override
 	public void executer() {
+
 	}
 
 	@Override
 	public void executer(String... pSaisie) {
-
+		boolean verif = false;
 		counter = 0;
 		String arg = Utils.stringCleaner(pSaisie);
 		String[] args = arg.split(" ");

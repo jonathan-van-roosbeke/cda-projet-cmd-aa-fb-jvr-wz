@@ -2,13 +2,15 @@ package com.cda.simulateur.menu.action;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
+
+import com.cda.simulateur.tools.Ihm;
 
 public class History extends Command {
 
-	public static final ArrayList<String> LISTCOMMAND = new ArrayList<>();
+	public static final LinkedList<String> LISTCOMMAND = new LinkedList<String>();
 	private static DateTimeFormatter vDateFormat = DateTimeFormatter.ofPattern("hh:mm:ss  dd-MM-yyyy");
 	public static History HistoryInstance = new History();
 	private static int cmp;
@@ -21,26 +23,30 @@ public class History extends Command {
 		return HistoryInstance;
 	}
 
-	public static ArrayList<String> getListcommand() {
+	public static LinkedList<String> getListcommand() {
 		return LISTCOMMAND;
 	}
 
-	public static void ajouterCmd(String pCmd) {
-		if (verifiList(pCmd)) {
-		} else {
-			LISTCOMMAND.add(cmp, pCmd + " " + LocalDateTime.now().format(vDateFormat));
-			cmp++;
+	public static void ajouterCmd(String... pCmd) {
+
+		if (!verifiList(pCmd)) {
+			if (cmp < 10) {
+				LISTCOMMAND.add(Ihm.commande + " " + LocalDateTime.now().format(vDateFormat));
+				cmp++;
+			} else {
+
+				LISTCOMMAND.removeFirst();
+				LISTCOMMAND.addLast(Ihm.commande + " " + LocalDateTime.now().format(vDateFormat));
+			}
 		}
-		if (cmp == 10) {
-			cmp = 0;
-		}
+
 	}
 
-	private static boolean verifiList(String pCmd) {
+	private static boolean verifiList(String... pCmd) {
 		String[] argSwitch = { "exit", "help", "history", "histclear", "pwd" };
 		List<String> arrayArgs = Arrays.asList(argSwitch);
-
-		return arrayArgs.contains(pCmd);
+		String[] args = pCmd[0].split(" ");
+		return arrayArgs.contains(pCmd[0]);
 	}
 
 	@Override
