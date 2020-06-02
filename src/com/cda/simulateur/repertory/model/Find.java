@@ -25,6 +25,10 @@ public class Find extends Command {
 		Pwd.setAdressCourante(Pwd.getAdressCourante());
 		File srcFile = new File(Pwd.vAdressCourante);
 
+		if (args.length > 4) {
+			System.out.println("Argument invalide");
+			return;
+		}
 		if (args.length > 2) {
 			if ("-starts".equals(args[0]) && "-ends".equals(args[2])) {
 				findFileStartsEnds(srcFile, args[1], args[3]);
@@ -37,18 +41,21 @@ public class Find extends Command {
 			findFileEndsWith(srcFile, args[1]);
 			String print = (counter <= 1) ? "fichier trouve" : "fichers trouves";
 			System.out.println(counter + " " + print);
+			return;
 		}
 		if ("-starts".equals(args[0])) {
 			findFileStartsWith(srcFile, args[1]);
 			String print = (counter <= 1) ? "fichier trouve" : "fichers trouves";
 			System.out.println(counter + " " + print);
-		} else {
-			findFile(srcFile, args[0]);
-			String print = (counter <= 1) ? "fichier trouve" : "fichers trouves";
-			System.out.println(counter + " " + print);
-			if (counter == 0) {
-				System.out.println("Ajouter un parametre...");
-			}
+			return;
+		}
+
+		findFile(srcFile, args[0]);
+		String print = (counter <= 1) ? "fichier trouve" : "fichers trouves";
+		System.out.println(counter + " " + print);
+		if (counter == 0) {
+			System.out.println("Ajouter un parametre...");
+
 		}
 
 	}
