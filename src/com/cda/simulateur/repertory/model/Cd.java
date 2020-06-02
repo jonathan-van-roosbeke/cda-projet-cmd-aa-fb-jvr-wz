@@ -70,7 +70,7 @@ public final class Cd extends Command {
 
 	@Override
 	public void executer() {
-		System.out.println(Pwd.getAdressCourante());
+		System.out.println();
 	}
 
 	@Override
@@ -115,7 +115,5 @@ public final class Cd extends Command {
 				Pwd.vCheminArray.addAll(vTempUrl);
 			}
 		}
-		System.out.println(Pwd.getAdressCourante());
-
 	}
 }

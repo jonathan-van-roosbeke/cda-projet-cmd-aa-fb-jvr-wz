@@ -8,10 +8,10 @@ public class ProgrammeSimulateurConsole {
 
 	public static void main(String[] args) {
 		String proprieteLancement = System.getProperty("cdi.default.folder");
-		File testFichier = new File(proprieteLancement);
 
-		if (proprieteLancement != null && testFichier.exists()) {
-			if (!(testFichier.isFile())) {
+		if (proprieteLancement != null) {
+			File repertoire = new File(proprieteLancement);
+			if (repertoire.isDirectory()) {
 				System.setProperty("user.dir", proprieteLancement);
 			}
 		}
