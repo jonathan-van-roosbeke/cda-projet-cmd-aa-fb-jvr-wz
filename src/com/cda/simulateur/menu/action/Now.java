@@ -19,7 +19,8 @@ public class Now extends Command {
 
 	@Override
 	public void executer() {
-
+		System.out.println(
+				LocalDateTime.now().format(vDateFormatDate) + " " + LocalDateTime.now().format(vDateFormatHeure));
 	}
 
 	@Override
