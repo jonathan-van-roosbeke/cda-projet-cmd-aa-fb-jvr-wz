@@ -28,6 +28,7 @@ import com.cda.simulateur.repertory.model.Pwd;
 public class Ihm {
 	public static HashMap<String, Command> listCmd = new HashMap<>();
 	private final static Ihm ihmInstance = new Ihm();
+	public static String commande;
 
 	private Ihm() {
 		listCmd.put("exit", Exit.exitInstance);
@@ -77,6 +78,7 @@ public class Ihm {
 			System.out.println(Pwd.getAdressCourante());
 
 			cmd = sc.nextLine().toLowerCase().trim();
+			commande = cmd;
 
 			if (cmd.startsWith("cd.")) {
 				String commande = cmd.substring(0, 2);
