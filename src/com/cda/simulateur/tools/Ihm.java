@@ -1,10 +1,8 @@
 package com.cda.simulateur.tools;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import com.cda.exceptions.FileErrorException;
 import com.cda.simulateur.file.model.copy.Copy;
 import com.cda.simulateur.file.model.copy.Crd;
 import com.cda.simulateur.file.model.copy.Crf;
@@ -73,7 +71,7 @@ public class Ihm {
 		return listCmd.get(pCmd);
 	}
 
-	public static void lancerMenu() throws FileErrorException, IOException {
+	public static void lancerMenu() {
 		Scanner sc = new Scanner(System.in);
 		String cmd;
 
