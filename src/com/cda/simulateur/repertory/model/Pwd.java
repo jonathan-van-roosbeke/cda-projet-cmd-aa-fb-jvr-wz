@@ -41,6 +41,5 @@ public final class Pwd extends Command {
 
 	@Override
 	public void executer(String... pSaisie) {
-		System.out.println(Pwd.getAdressCourante());
 	}
 }
