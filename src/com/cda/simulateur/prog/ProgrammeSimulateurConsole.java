@@ -1,5 +1,7 @@
 package com.cda.simulateur.prog;
 
+import java.io.File;
+
 import com.cda.simulateur.tools.Ihm;
 
 public class ProgrammeSimulateurConsole {
