@@ -61,7 +61,7 @@ public class Dir extends Command {
 				afficheDossier(f);
 			}
 		} else {
-			System.out.println("Le chemin absolue n'existe pas");
+			System.out.println("Le chemin n'existe pas");
 		}
 	}
 }
