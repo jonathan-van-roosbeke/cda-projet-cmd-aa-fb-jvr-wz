@@ -16,6 +16,10 @@ public final class Pwd extends Command {
 		super();
 	}
 
+	public static List<String> getvCheminArray() {
+		return vCheminArray;
+	}
+
 	// retourne le chemin du repertoire courant
 	public static Pwd getPwdinstance() {
 		return vPwdInstance;

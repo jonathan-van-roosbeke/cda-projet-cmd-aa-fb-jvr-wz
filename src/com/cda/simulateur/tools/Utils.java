@@ -95,4 +95,23 @@ public class Utils {
 		}
 		return sb.toString();
 	}
+
+	// verifie le chemin absolue
+	public static boolean existAbsolute(String pSaisie) {
+		File vFile = new File(pSaisie);
+		if (vFile.isDirectory()) {
+			return true;
+		}
+		return false;
+	}
+
+	// verifie si le document existe dans le repertoire courant
+	public static boolean existInRepertory(String pSaisie) {
+		String vTempChemin = Pwd.getAdressCourante() + pSaisie;
+		File file = new File(vTempChemin);
+		if (file.isDirectory()) {
+			return true;
+		}
+		return false;
+	}
 }
