@@ -48,7 +48,7 @@ public enum HelpEnum {
 			+ "  -t  Affiche l'heure.\r\n" + "  -d  Affiche la date.\r\n"),
 	PWD("En cours d'implémentation.\r\n"),
 	RIVER("\nRIVER [nombre][nombre]\r\n" + "\nAprès addition à eux-même de chacun des chiffres qui composent\r\n"
-			+ "les nombres entrés en paramètres, affiche leur nombre commun s'ils se croisent.\r\n"),;
+			+ "les nombres entrés en paramètres, affiche leur nombre commun s'ils se croisent.\r\n");
 
 	private String description;
 
