@@ -9,7 +9,6 @@ import com.cda.simulateur.tools.Utils;
 
 public class Help extends Command {
 	private static final HashMap<String, String> LISTCMD = new HashMap<>();
-	private static final HashMap<String, String> DETAILCMD = new HashMap<>();
 
 	public static Help help = new Help();
 
@@ -21,12 +20,12 @@ public class Help extends Command {
 				"Affiche le nombre de fichiers et dossiers\r\n" + "             dans le répertoire en cours.");
 		LISTCMD.put("copy", "Copie un fichier.");
 		LISTCMD.put("crd", "Crée un répertoire.");
-		LISTCMD.put("crf", "Crée un fichier dans.");
-		LISTCMD.put("dir", "Affiche le contenu de c:\\");
+		LISTCMD.put("crf", "Crée un fichier.");
+		LISTCMD.put("dir", "Affiche la liste des fichiers et sous-répertoires\r\n" + "             d'un répertoire.");
 		LISTCMD.put("dirng", "Affiche le contenu du repertoire en cours\r\n"
 				+ "             et affiche le nombre de fichiers et répertoire.");
 		LISTCMD.put("exit", "Quitte l'interpréteur de commandes.");
-		LISTCMD.put("find", "Liste tous les fichiers dans le répertoire en cours.");
+		LISTCMD.put("find", "Recherche une chaîne de caractères dans un ou plusieurs\r\n" + "             fichiers.");
 		LISTCMD.put("fline", "Affiche le contenu d'un fichier.");
 		LISTCMD.put("getvars",
 				"Affiche les variables d'environnement\r\n" + "             et les propriétés de la jvm");
@@ -39,31 +38,6 @@ public class Help extends Command {
 		LISTCMD.put("pwd", "Affiche l'adresse du répertoire en cours.");
 		LISTCMD.put("river", "Affiche la première intersection des rivières.");
 
-		DETAILCMD.put("cat", "\nTYPE [lecteur:][chemin]nom_de_fichier\r\n");
-		DETAILCMD.put("cd",
-				"\nCD [lecteur:][chemin]\r\n" + "CD [..]\r\n" + "CD [.]\r\n"
-						+ "\n  ..   Signifie que vous voulez vous placer sur le répertoire parent.\r\n"
-						+ "  .    Signifie que vous voulez afficher le répertoire en cours.\r\n"
-						+ "\nEntrez CD lecteur: pour afficher le répertoire en cours sur le lecteur.\r\n"
-						+ "Entrez CD sans paramètres pour afficher le lecteur et le répertoire en cours.\r\n");
-		DETAILCMD.put("count", "\nCOUNT \r\n" + "COUNT [-f]\r\n" + "COUNT [-d]\r\n");
-		DETAILCMD.put("copy", "En cours d'implémentation.\r\n");
-		DETAILCMD.put("crd", "En cours d'implémentation.\r\n");
-		DETAILCMD.put("crf", "En cours d'implémentation.\r\n");
-		DETAILCMD.put("dir", "En cours d'implémentation.\r\n");
-		DETAILCMD.put("dirng", "En cours d'implémentation.\r\n");
-		DETAILCMD.put("exit", "En cours d'implémentation.\r\n");
-		DETAILCMD.put("find", "En cours d'implémentation.\r\n");
-		DETAILCMD.put("fline", "En cours d'implémentation.\r\n");
-		DETAILCMD.put("getvars", "En cours d'implémentation.\r\n");
-		DETAILCMD.put("help", "En cours d'implémentation.\r\n");
-		DETAILCMD.put("histclear", "En cours d'implémentation.\r\n");
-		DETAILCMD.put("history", "En cours d'implémentation.\r\n");
-		DETAILCMD.put("isprime", "En cours d'implémentation.\r\n");
-		DETAILCMD.put("ls", "En cours d'implémentation.\r\n");
-		DETAILCMD.put("now", "En cours d'implémentation.\r\n");
-		DETAILCMD.put("pwd", "En cours d'implémentation.\r\n");
-		DETAILCMD.put("river", "En cours d'implémentation.\r\n");
 	}
 
 	@Override
@@ -73,7 +47,7 @@ public class Help extends Command {
 		if (LISTCMD.get(args[0]) == null) {
 			System.out.println("Cette commande n’est pas prise en charge par l’utilitaire d’aide.\n");
 		} else {
-			System.out.println(LISTCMD.get(args[0]) + "\n" + DETAILCMD.get(args[0]));
+			System.out.println(LISTCMD.get(args[0]) + "\n" + HelpEnum.valueOf(args[0].toUpperCase()).getDescription());
 		}
 	}
 

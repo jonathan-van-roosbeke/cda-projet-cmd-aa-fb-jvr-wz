@@ -28,18 +28,12 @@ public class Now extends Command {
 
 		if (pSaisie[0].startsWith("-")) {
 			String encours = "";
-
 			String test = pSaisie[0];
 			Character[] argSwitch = { 'd', 't' };
 			List<Character> arrayArgs = Arrays.asList(argSwitch);
 			test = Utils.removeDuplicateCharacter(test).replace("-", "");
 			for (int i = 0; i < test.length(); i++) {
-				if (arrayArgs.contains(test.charAt(i))) {
-
-				} else {
-					encours += test.charAt(i);
-				}
-
+				encours += arrayArgs.contains(test.charAt(i)) ? "" : test.charAt(i);
 			}
 			if (encours.equals("")) {
 				for (int i = 0; i < test.length(); i++) {

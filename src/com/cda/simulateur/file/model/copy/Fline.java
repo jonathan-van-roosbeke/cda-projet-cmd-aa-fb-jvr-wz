@@ -33,6 +33,9 @@ public class Fline extends Command {
 
 		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 			while ((str = br.readLine()) != null) {
+				if (str.contains("urna")) {
+					System.out.println(str);
+				}
 				nbrLine++;
 			}
 		} catch (IOException e) {
@@ -41,6 +44,7 @@ public class Fline extends Command {
 		}
 
 		System.out.println("Nombre de lignes dans le fichier : " + nbrLine);
+
 	}
 
 	public static int verifArgs(String... pSaisie) {
@@ -51,6 +55,14 @@ public class Fline extends Command {
 
 		return 0;
 	}
+
+	public static void traitementString(String pSaisie) {
+		String[] pSaisieSplit = pSaisie.split(" ");
+		String opt1 = pSaisieSplit[2];
+		String opt2 = pSaisieSplit[3];
+
+	}
+
 	/*
 	 * ajouter la commande "fline" qui fait des traitements sur un fichier ligne par
 	 * ligne : format : fline nomFichier -option1 -option2 ... fline est toujours
