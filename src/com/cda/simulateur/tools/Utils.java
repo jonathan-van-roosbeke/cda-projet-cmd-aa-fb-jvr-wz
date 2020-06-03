@@ -114,4 +114,14 @@ public class Utils {
 		}
 		return false;
 	}
+
+	public static boolean existFile(String pSaisie) {
+		String vTempChemin = Pwd.getAdressCourante() + pSaisie;
+		File file = new File(vTempChemin);
+		if (file.exists()) {
+			return true;
+		}
+		return false;
+
+	}
 }

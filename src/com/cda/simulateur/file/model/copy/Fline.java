@@ -1,9 +1,9 @@
 package com.cda.simulateur.file.model.copy;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,57 +25,128 @@ public class Fline extends Command {
 
 	@Override
 	public void executer(String... pSaisie) {
-		String str;
+		String fichier;
+		ArrayList<String> arrayText = null;
+		String encours = "";
 		int nbrLine = 0;
+		String recherche;
+		int debut = 0;
+		int fin = 0;
 		String arg = Utils.stringCleaner(pSaisie);
-		String[] args = arg.split(" ");
-		File file = new File(args[0]);
-
-		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-			while ((str = br.readLine()) != null) {
-				if (str.contains("urna")) {
-					System.out.println(str);
+		String[] tabArgsSaisie = arg.split(" ");
+		String[] argSwitch = { "-n", "-d", "-s", "-f" };
+		List<String> arrayArgs = Arrays.asList(argSwitch);
+		for (int i = 1; i < tabArgsSaisie.length; i++) {
+			if (tabArgsSaisie[i].equals("-d") && tabArgsSaisie[i + 1].matches("^[0-9]+$") && i < tabArgsSaisie.length) {
+				debut = Integer.parseInt(tabArgsSaisie[i + 1]);
+			}
+			if (tabArgsSaisie[i].equals("-f") && i < tabArgsSaisie.length - 1) {
+				if (tabArgsSaisie[i + 1].matches("^[0-9]+$")) {
+					fin = Integer.parseInt(tabArgsSaisie[i + 1]);
 				}
-				nbrLine++;
+			}
+			if (tabArgsSaisie[i].equals("-s") && i < tabArgsSaisie.length) {
+				recherche = tabArgsSaisie[i + 1];
+			}
+		}
+		if (Utils.existFile(tabArgsSaisie[0])) {
+			fichier = tabArgsSaisie[0];
+		} else {
+			System.out.println("Fichier introuvable.");
+			return;
+		}
+
+		for (int i = 1; i < tabArgsSaisie.length; i++) {
+			if (arrayArgs.contains(tabArgsSaisie[i])) {
+				encours = tabArgsSaisie[i];
+
+				switch (arrayArgs.indexOf(encours)) {
+				case 0:
+					if (tabArgsSaisie[1].equals("-n") && tabArgsSaisie.length == 2) {
+						System.out.println("Le nombre de ligne du fichier est de : " + nbreLigne(fichier));
+
+						break;
+					} else {
+						System.out.println("Saisi incorrect");
+						return;
+					}
+				case 1:
+					fin = fin == 0 ? nbreLigne(fichier) : fin;
+					lireFichierAPartirDe(fichier, debut, fin);
+					break;
+				case 2:
+					for (String string : lireFichierAvecRecherche(fichier, tabArgsSaisie[i + 1])) {
+						System.out.println(string);
+					}
+
+					break;
+				default:
+					break;
+				}
+			}
+		}
+	}
+
+	private static int nbreLigne(String pFichier) {
+		String str;
+		int nbreLigne = 0;
+		try (BufferedReader br = new BufferedReader(new FileReader(pFichier))) {
+			while ((str = br.readLine()) != null) {
+				nbreLigne++;
 			}
 		} catch (IOException e) {
-
 			e.printStackTrace();
 		}
 
-		System.out.println("Nombre de lignes dans le fichier : " + nbrLine);
-
+		return nbreLigne;
 	}
 
-	public static int verifArgs(String... pSaisie) {
-		String[] argSwitch = { "-n", "-d", "-f", "-g" };
-		List<String> arrayArgs = Arrays.asList(argSwitch);
-		String arg = Utils.stringCleaner(pSaisie);
-		String[] args = arg.split(" ");
-
-		return 0;
+	private static void lireFichier(String pFichier) {
+		String str;
+		int nbreLigne = 0;
+		try (BufferedReader br = new BufferedReader(new FileReader(pFichier))) {
+			while ((str = br.readLine()) != null) {
+				System.out.println(str);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
-	public static void traitementString(String pSaisie) {
-		String[] pSaisieSplit = pSaisie.split(" ");
-		String opt1 = pSaisieSplit[2];
-		String opt2 = pSaisieSplit[3];
+	public static ArrayList<String> lireFichierAvecRecherche(String pFichier, String Precherche) {
+		ArrayList<String> listRecup = new ArrayList<>();
+		String str;
+		try (BufferedReader br = new BufferedReader(new FileReader(pFichier))) {
+			while ((str = br.readLine()) != null) {
+				if (str.contains(Precherche)) {
+					listRecup.add(str);
+				}
 
+			}
+			if (str == null) {
+				System.out.println("Aucune correspondance");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return listRecup;
 	}
 
-	/*
-	 * ajouter la commande "fline" qui fait des traitements sur un fichier ligne par
-	 * ligne : format : fline nomFichier -option1 -option2 ... fline est toujours
-	 * suivi du nom d'un fichier, sinon erreur syntaxe -n : affiche le nombre de
-	 * lignes, ne peut pas être utilisé en même temps qu'une autre option. -d :
-	 * permet de définir le numéro de ligne à partir duquel le traitement va être
-	 * fait (inclus). -f : permet de définir le numéro de ligne jusqu'auquel le
-	 * traitement va être fait (inclus). -g : permet de chercher un string dans une
-	 * ligne, peut être utilisé avec les options -d et -f exemple : > cat
-	 * fichier.txt contenu l1 contenu l2 contenu l3 > fline fichier.txt contenu l1
-	 * contenu l2 contenu l3 > fline fichier.txt -n 3 lignes > fline fichier.txt -d
-	 * l1 contenu l1 > fline fichier.txt -g l contenu l1 contenu l2 contenu l3 >
-	 * fline fichier.txt -g l -d 2 contenu l2 contenu l3 > fline fichier.txt -g l -f
-	 * 2 -d 1 contenu l1 contenu l2
-	 */
+	public static void lireFichierAPartirDe(String pFichier, int pDebut, int pFin) {
+		String str;
+		int compteur = 0;
+		try (BufferedReader br = new BufferedReader(new FileReader(pFichier))) {
+			while ((str = br.readLine()) != null) {
+				compteur++;
+				if (compteur >= pDebut && compteur <= pFin) {
+					System.out.println(str);
+
+				}
+
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }
