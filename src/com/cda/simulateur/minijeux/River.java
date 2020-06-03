@@ -1,6 +1,7 @@
 package com.cda.simulateur.minijeux;
 
 import com.cda.simulateur.menu.action.Command;
+import com.cda.simulateur.tools.Output;
 import com.cda.simulateur.tools.Utils;
 
 /**
@@ -27,7 +28,7 @@ public class River extends Command {
 	public void executer(String... pArg) {
 		String resultat = "";
 		if (pArg[0].equals("")) {
-			System.out.println("River prends 2 entiers en paramètres.\n");
+			Output.nombreParamètres();
 		} else {
 			String result = Utils.stringCleaner(pArg);
 			String[] test = result.split(" ");
@@ -39,7 +40,7 @@ public class River extends Command {
 				String strTempA = test[0];
 				String strTempB = test[1];
 				String messErreur = "";
-				String messErreurB = "saisir un nombre compris entre 0 " + Integer.MAX_VALUE + ".\n";
+				String messErreurB = "Le nombre doit être compris entre 0 et " + Integer.MAX_VALUE + ".\n";
 				int intTempA = 0;
 				int intTempB = 0;
 				int compteur = 0;
@@ -96,7 +97,7 @@ public class River extends Command {
 					strTempB = String.valueOf(intTempB);
 					compteur++;
 					if (compteur == 5000000) {
-						System.out.println("délai expiré\n");
+						System.out.println("Délai expiré.\n");
 						return;
 					}
 

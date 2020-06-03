@@ -1,6 +1,7 @@
 package com.cda.simulateur.minijeux;
 
 import com.cda.simulateur.menu.action.Command;
+import com.cda.simulateur.tools.Output;
 import com.cda.simulateur.tools.Utils;
 
 /**
@@ -27,18 +28,17 @@ public class IsPrime extends Command {
 		String nbreSaisi = Utils.stringCleaner(pArg[0]);
 		String[] test = nbreSaisi.split(" ");
 		boolean prime = true;
+		int n = 0;
 
-		if (pArg[0] == "" || test.length != 1 || Utils.verifSaisieNombre(nbreSaisi) || Integer.parseInt(pArg[0]) < 0) {
-			System.out.println("isprime prends en paramètre un entier positif compris entre 0 et " + Integer.MAX_VALUE);
+		if (pArg[0] == "" || test.length != 1 || Utils.verifSaisieNombre(nbreSaisi)) {
+			Output.syntaxeIncorrecte();
 		} else {
-			int n = 0;
 			try {
 				n = Integer.parseInt(nbreSaisi);
 			} catch (NumberFormatException nfe) {
-				System.out.println("saisir un nombre compris entre 0 " + Integer.MAX_VALUE);
+				Output.nombreTropGrand();
 				prime = false;
 			}
-
 			boolean bool = false;
 			String result = "no";
 			if (n <= 1) {
@@ -53,7 +53,7 @@ public class IsPrime extends Command {
 				}
 			}
 			if (prime) {
-				System.out.println(result);
+				System.out.println(result + "\n");
 			}
 		}
 	}

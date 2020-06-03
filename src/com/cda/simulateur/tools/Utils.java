@@ -22,7 +22,7 @@ public class Utils {
 		for (File f : filesList) {
 			System.out.println(f.getName());
 		}
-		System.out.println();
+		Output.sautLigne();
 	}
 
 	public static String stringCleaner(String[] pArg) {
@@ -113,5 +113,15 @@ public class Utils {
 			return true;
 		}
 		return false;
+	}
+
+	public static boolean existFile(String pSaisie) {
+		String vTempChemin = Pwd.getAdressCourante() + pSaisie;
+		File file = new File(vTempChemin);
+		if (file.exists()) {
+			return true;
+		}
+		return false;
+
 	}
 }

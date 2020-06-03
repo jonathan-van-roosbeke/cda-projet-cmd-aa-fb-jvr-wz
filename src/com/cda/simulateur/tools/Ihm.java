@@ -15,6 +15,7 @@ import com.cda.simulateur.menu.action.HistoryClear;
 import com.cda.simulateur.menu.action.Now;
 import com.cda.simulateur.minijeux.IsPrime;
 import com.cda.simulateur.minijeux.River;
+import com.cda.simulateur.minijeux.Secret;
 import com.cda.simulateur.repertory.model.Cat;
 import com.cda.simulateur.repertory.model.Cd;
 import com.cda.simulateur.repertory.model.Count;
@@ -52,7 +53,7 @@ public class Ihm {
 		listCmd.put("fline", Fline.flineInstance);
 		listCmd.put("getvars", Getvars.getvarsInstance);
 		listCmd.put("now", Now.nowInstance);
-
+		listCmd.put("cda", Secret.secretInstance);
 	}
 
 	public static HashMap<String, Command> getListCmd() {
@@ -76,7 +77,7 @@ public class Ihm {
 		String cmd;
 
 		do {
-			System.out.println(Pwd.getAdressCourante());
+			Output.adresseCourante(Pwd.getAdressCourante());
 
 			cmd = sc.nextLine().toLowerCase().trim();
 			commande = cmd;

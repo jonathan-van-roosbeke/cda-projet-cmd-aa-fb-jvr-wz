@@ -3,6 +3,7 @@ package com.cda.simulateur.repertory.model;
 import java.io.File;
 
 import com.cda.simulateur.menu.action.Command;
+import com.cda.simulateur.tools.Output;
 
 public class Ls extends Command {
 
@@ -25,7 +26,7 @@ public class Ls extends Command {
 				}
 			}
 		}
-		System.out.println();
+		Output.sautLigne();
 	}
 
 	@Override

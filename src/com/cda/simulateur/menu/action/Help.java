@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import com.cda.simulateur.tools.Output;
 import com.cda.simulateur.tools.Utils;
 
 public class Help extends Command {
@@ -37,7 +38,6 @@ public class Help extends Command {
 		LISTCMD.put("now", "Affiche l'heure et la date.");
 		LISTCMD.put("pwd", "Affiche l'adresse du répertoire en cours.");
 		LISTCMD.put("river", "Affiche la première intersection des rivières.");
-
 	}
 
 	@Override
@@ -45,7 +45,7 @@ public class Help extends Command {
 		String arg = Utils.stringCleaner(pSaisie);
 		String[] args = arg.split(" ");
 		if (LISTCMD.get(args[0]) == null) {
-			System.out.println("Cette commande n’est pas prise en charge par l’utilitaire d’aide.\n");
+			Output.commandePasPriseEnCharge();
 		} else {
 			System.out.println(LISTCMD.get(args[0]) + "\n" + HelpEnum.valueOf(args[0].toUpperCase()).getDescription());
 		}
@@ -53,15 +53,13 @@ public class Help extends Command {
 
 	@Override
 	public void executer() {
-		System.out.println(
-				"Pour plus d’informations sur une commande spécifique, entrez HELP\n" + "suivi de la commande.");
-
+		Output.introHelp();
 		LinkedHashMap<String, String> collect = LISTCMD.entrySet().stream()
 				.collect(Collectors.toMap(k -> (String) k.getKey(), e -> (String) e.getValue())).entrySet().stream()
 				.sorted(Map.Entry.comparingByKey()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
 						(oldValue, newValue) -> oldValue, LinkedHashMap::new));
 
 		collect.forEach((k, e) -> System.out.format("%-12s %s%n", k.toUpperCase(), e));
-		System.out.println("");
+		Output.sautLigne();
 	}
 }

@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import com.cda.simulateur.menu.action.Command;
 import com.cda.simulateur.repertory.model.Pwd;
+import com.cda.simulateur.tools.Output;
 
 public class Copy extends Command {
 	public static Copy copyInstance = new Copy();
@@ -22,7 +23,8 @@ public class Copy extends Command {
 		FileOutputStream fos = null;
 
 		if (pSaisie[0].indexOf(" ") != -1) {
-			System.out.println("L'argument n'est pas correct");
+			Output.syntaxeIncorrecte();
+			return;
 		}
 
 		try {
@@ -50,12 +52,12 @@ public class Copy extends Command {
 					while ((len = fis.read(buf)) != -1) {
 						fos.write(buf, 0, len);
 					}
-					System.out.println("C'est reussie");
+					Output.copieFichierReussie();
 				} else {
-					System.out.println("Le fichier n'existe pas");
+					Output.fichierIntrouvable();
 				}
 			} catch (FileNotFoundException e) {
-				System.out.println("Fichier introuvable");
+				Output.fichierIntrouvable();
 			}
 
 		} catch (IOException e) {
@@ -79,6 +81,6 @@ public class Copy extends Command {
 
 	@Override
 	public void executer() {
-		System.out.println("Manque argument");
+		Output.syntaxeIncorrecte();
 	}
 }
