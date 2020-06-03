@@ -33,6 +33,10 @@ public final class Cd extends Command {
 	private String convertToValidUrl(String pAdresse) {
 		StringBuilder sb = new StringBuilder();
 
+		if (pAdresse.startsWith("/") && pAdresse.length() > 1) {
+			pAdresse = pAdresse.substring(1);
+		}
+
 		for (int i = 0; i < pAdresse.length(); i++) {
 			if (pAdresse.charAt(i) == '\\') {
 				sb.append("/");
