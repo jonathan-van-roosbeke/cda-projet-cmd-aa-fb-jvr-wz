@@ -55,6 +55,7 @@ public class Count extends Command {
 
 				case 'r':
 					recursivePath(new File(Pwd.getAdressCourante()));
+					System.out.println();
 				}
 			}
 
@@ -97,23 +98,17 @@ public class Count extends Command {
 
 	private void recursivePath(File pPath) {
 		File[] listDossier = pPath.listFiles();
-		int countDossier = recupereNombreRepertoire(pPath.toString());
-		int countFichier = recupereNombreFichier(pPath.toString());
-		System.out.println("Nombre dossier " + countDossier);
-		System.out.println("Nombre fichier " + countFichier);
-		if (listDossier == null) {
-			return;
-		}
 
-		for (File f : listDossier) {
-			if (f.isDirectory()) {
-				recursivePath(f.getAbsoluteFile());
-				System.out.println("<DIR>  " + f.getAbsolutePath());
-			} else if (f.isFile()) {
-				System.out.println("<FILE> " + f.getAbsolutePath());
+		if (listDossier != null) {
+			for (File f : listDossier) {
+				if (f.isDirectory()) {
+					recursivePath(f.getAbsoluteFile());
+					System.out.println("<DIR>  " + f.getAbsolutePath());
+					System.out.println("repertoire : " + recupereNombreRepertoire(f.getAbsolutePath()));
+					System.out.println("fichier    : " + recupereNombreFichier(f.getAbsolutePath()));
+				}
 			}
 		}
-
 	}
 
 	@Override
