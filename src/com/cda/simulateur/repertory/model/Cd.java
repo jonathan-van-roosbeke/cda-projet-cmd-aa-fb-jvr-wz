@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.cda.simulateur.menu.action.Command;
+import com.cda.simulateur.tools.Output;
 import com.cda.simulateur.tools.Utils;
 
 public final class Cd extends Command {
@@ -49,7 +50,7 @@ public final class Cd extends Command {
 
 	// envoie message d'erreur
 	private void erreurChemin() {
-		System.out.println("le repertoire que vous demandez est introuvable \n");
+		Output.repertoireIntrouvable();
 	}
 
 	@Override

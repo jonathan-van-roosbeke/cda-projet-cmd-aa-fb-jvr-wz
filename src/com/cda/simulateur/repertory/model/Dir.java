@@ -3,6 +3,7 @@ package com.cda.simulateur.repertory.model;
 import java.io.File;
 
 import com.cda.simulateur.menu.action.Command;
+import com.cda.simulateur.tools.Output;
 import com.cda.simulateur.tools.Utils;
 
 public class Dir extends Command {
@@ -60,7 +61,7 @@ public class Dir extends Command {
 						afficheDossier(f);
 					}
 				} else {
-					System.out.println("Le chemin n'existe pas");
+					Output.repertoireIntrouvable();
 				}
 			} else if (Utils.existInRepertory(vUrl)) {
 				File[] vFiles = new File(Pwd.getAdressCourante() + vUrl).listFiles();
@@ -70,10 +71,10 @@ public class Dir extends Command {
 					}
 				}
 			} else {
-				System.out.println("Le dossier n'existe pas");
+				Output.repertoireIntrouvable();
 			}
 		} else {
-			System.out.println("Le chemin n'existe pas");
+			Output.repertoireIntrouvable();
 		}
 	}
 }

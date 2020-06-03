@@ -16,7 +16,6 @@ public class ProgrammeSimulateurConsole {
 				System.setProperty("user.dir", proprieteLancement);
 			}
 		}
-
 		Ihm.lancerMenu();
 	}
 }

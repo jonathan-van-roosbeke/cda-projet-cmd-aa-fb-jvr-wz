@@ -3,6 +3,7 @@ package com.cda.simulateur.repertory.model;
 import java.io.File;
 
 import com.cda.simulateur.menu.action.Command;
+import com.cda.simulateur.tools.Output;
 import com.cda.simulateur.tools.Utils;
 
 public class Find extends Command {
@@ -14,7 +15,7 @@ public class Find extends Command {
 
 	@Override
 	public void executer() {
-
+		Output.nombreParamètres();
 	}
 
 	@Override
@@ -27,35 +28,35 @@ public class Find extends Command {
 		File srcFile = new File(Pwd.vAdressCourante);
 
 		if (args.length > 4) {
-			System.out.println("Argument invalide");
+			Output.nombreParamètres();
 			return;
 		}
 		if (args.length > 2) {
 			if ("-starts".equals(args[0]) && "-ends".equals(args[2])) {
 				findFileStartsEnds(srcFile, args[1], args[3]);
-				String print = (counter <= 1) ? "fichier trouve" : "fichers trouves";
+				String print = (counter <= 1) ? "fichier trouvé\n" : "fichers trouvés\n";
 				System.out.println(counter + " " + print);
 				return;
 			}
 		}
 		if ("-ends".equals(args[0]) && args.length > 1) {
 			findFileEndsWith(srcFile, args[1]);
-			String print = (counter <= 1) ? "fichier trouve" : "fichers trouves";
+			String print = (counter <= 1) ? "fichier trouvé\n" : "fichers trouvés\n";
 			System.out.println(counter + " " + print);
 			return;
 		}
 		if ("-starts".equals(args[0]) && args.length > 1) {
 			findFileStartsWith(srcFile, args[1]);
-			String print = (counter <= 1) ? "fichier trouve" : "fichers trouves";
+			String print = (counter <= 1) ? "fichier trouvé\n" : "fichers trouvés\n";
 			System.out.println(counter + " " + print);
 			return;
 		}
 
 		findFile(srcFile, args[0]);
-		String print = (counter <= 1) ? "fichier trouve" : "fichers trouves";
+		String print = (counter <= 1) ? "fichier trouvé\n" : "fichers trouvés\n";
 		System.out.println(counter + " " + print);
 		if (counter == 0) {
-			System.out.println("Ajouter un parametre...");
+			Output.syntaxeIncorrecte();
 
 		}
 

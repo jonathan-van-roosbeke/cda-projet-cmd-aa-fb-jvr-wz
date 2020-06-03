@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 
 import com.cda.simulateur.menu.action.Command;
+import com.cda.simulateur.tools.Output;
 import com.cda.simulateur.tools.Utils;
 
 public class Cat extends Command {
@@ -12,7 +13,6 @@ public class Cat extends Command {
 
 	public Cat() {
 		super();
-
 	}
 
 	@Override
@@ -36,7 +36,7 @@ public class Cat extends Command {
 				System.out.println(myLine);
 			}
 		} catch (Exception e) {
-			System.out.println("Fichier introuvable");
+			Output.fichierIntrouvable();
 		}
 	}
 }

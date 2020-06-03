@@ -22,7 +22,7 @@ public class Utils {
 		for (File f : filesList) {
 			System.out.println(f.getName());
 		}
-		System.out.println();
+		Output.sautLigne();
 	}
 
 	public static String stringCleaner(String[] pArg) {

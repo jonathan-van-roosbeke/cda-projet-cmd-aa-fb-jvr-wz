@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 
+import com.cda.simulateur.tools.Output;
 import com.cda.simulateur.tools.Utils;
 
 public class Now extends Command {
@@ -14,13 +15,13 @@ public class Now extends Command {
 
 	private Now() {
 		super();
-
 	}
 
 	@Override
 	public void executer() {
 		System.out.println(
 				LocalDateTime.now().format(vDateFormatDate) + " " + LocalDateTime.now().format(vDateFormatHeure));
+		Output.sautLigne();
 	}
 
 	@Override
@@ -43,25 +44,22 @@ public class Now extends Command {
 				for (int i = 0; i < test.length(); i++) {
 					char charEncour = test.charAt(i);
 					switch (arrayArgs.indexOf(charEncour)) {
-
 					case 0:
 						System.out.print(LocalDateTime.now().format(vDateFormatDate) + " ");
 						break;
 					case 1:
 						System.out.print(LocalDateTime.now().format(vDateFormatHeure) + " ");
 						break;
-
 					default:
 						break;
 					}
 				}
+				Output.sautLigne();
 			} else {
-				System.out.println(" unknown option -" + encours);
+				Output.syntaxeIncorrecte();
 			}
-			System.out.println();
-
 		} else {
-			System.out.println("l'option doit commencer par - ");
+			Output.syntaxeIncorrecte();
 		}
 	}
 }

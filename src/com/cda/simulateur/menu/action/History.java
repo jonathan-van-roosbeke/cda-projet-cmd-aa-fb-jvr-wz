@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.cda.simulateur.tools.Ihm;
+import com.cda.simulateur.tools.Output;
 
 public class History extends Command {
 
@@ -58,7 +59,7 @@ public class History extends Command {
 
 	@Override
 	public void executer(String... pSaisie) {
-		History.LISTCOMMAND.clear();
+		Output.syntaxeIncorrecte();
 	}
 
 	public int getCmp() {
