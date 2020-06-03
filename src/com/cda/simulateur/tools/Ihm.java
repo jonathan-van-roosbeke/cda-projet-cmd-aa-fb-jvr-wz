@@ -111,7 +111,7 @@ public class Ihm {
 			if (pCmd.equals("")) {
 				return false;
 			} else {
-				System.out.println("'" + pCmd + "' n’est pas reconnu en tant que commande interne\r\n"
+				System.out.println("'" + pCmd + "' n'est pas reconnu en tant que commande interne\r\n"
 						+ "ou externe, un programme exécutable ou un fichier de commandes.\r\n");
 				return false;
 			}

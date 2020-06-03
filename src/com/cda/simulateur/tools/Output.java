@@ -10,7 +10,7 @@ public class Output {
 	}
 
 	public static void syntaxeIncorrecte() {
-		System.out.println("La syntaxe de la commande n’est pas correcte.\n");
+		System.out.println("La syntaxe de la commande n'est pas correcte.\n");
 	}
 
 	public static void fichierIntrouvable() {
@@ -50,7 +50,7 @@ public class Output {
 	}
 
 	public static void commandePasPriseEnCharge() {
-		System.out.println("Cette commande n’est pas prise en charge par l’utilitaire d’aide.\n");
+		System.out.println("Cette commande n'est pas prise en charge par l'utilitaire d'aide.\n");
 	}
 
 	public static void introHelp() {
@@ -71,6 +71,6 @@ public class Output {
 	}
 
 	public static void repertoireIntrouvable() {
-		System.out.println("Le chemin d’accès spécifié est introuvable.\n");
+		System.out.println("Le chemin d'accès spécifié est introuvable.\n");
 	}
 }

@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.cda.simulateur.menu.action.Command;
+import com.cda.simulateur.repertory.model.Pwd;
+import com.cda.simulateur.tools.Output;
 import com.cda.simulateur.tools.Utils;
 
 public class Fline extends Command {
@@ -48,16 +50,16 @@ public class Fline extends Command {
 			for (int i = 1; i < vCmdArgs.length; i++) {
 				Option vOption = new Option();
 				if (vCmdArgs[i].length() != 2) {
-					System.out.println("erreur de syntaxe");
+					System.out.println("Erreur de syntaxe.");
 					return;
 				}
 				if (vCmdArgs[i].charAt(0) != '-') {
-					System.out.println("erreur de syntaxe");
+					System.out.println("Erreur de syntaxe.");
 					return;
 				}
 				vOption.nom = vCmdArgs[i].substring(1);
 				if (FlineOption.valueOf(vOption.nom) == null) {
-					System.out.println("erreur de syntaxe");
+					System.out.println("Erreur de syntaxe.");
 					return;
 				}
 
@@ -68,7 +70,7 @@ public class Fline extends Command {
 					vOptions.add(vOption);
 				}
 				if (vOption.nom.equalsIgnoreCase(FlineOption.N.name()) && vOptions.size() > 1) {
-					System.out.println("le n s'utilise tout seul");
+					System.out.println("L'option N s'utilise toute seule.");
 					return;
 				}
 			}
@@ -83,14 +85,14 @@ public class Fline extends Command {
 					if (vOption.valeur != null && vOption.valeur.matches("^[0-9]+$")) {
 						debut = Integer.parseInt(vOption.valeur);
 					} else {
-						System.out.println("erreur de syntaxe valeur non numerique pour l option d");
+						System.out.println("Erreur de syntaxe valeur non numérique pour l'option D.");
 						return;
 					}
 				} else if (vOption.nom.equalsIgnoreCase(FlineOption.F.name())) {
 					if (vOption.valeur != null && vOption.valeur.matches("^[0-9]+$")) {
 						fin = Integer.parseInt(vOption.valeur);
 					} else {
-						System.out.println("erreur de syntaxe valeur non numerique pour l option F");
+						System.out.println("Erreur de syntaxe valeur non numérique pour l'option F.");
 						return;
 					}
 				} else if (vOption.nom.equalsIgnoreCase(FlineOption.S.name())) {
@@ -102,10 +104,11 @@ public class Fline extends Command {
 			}
 
 			if (modeCompteur) {
-				System.out.println(nbreLigne(vCmdArgs[0]) + " lignes");
+				System.out.println(nbreLigne(vCmdArgs[0]) + " lignes.");
 			} else {
 				String uneLigne;
-				try (BufferedReader br = new BufferedReader(new FileReader(vCmdArgs[0]))) {
+				try (BufferedReader br = new BufferedReader(
+						new FileReader(Pwd.getAdressCourante() + "/" + vCmdArgs[0]))) {
 					int nbreLigne = 1;
 					while ((uneLigne = br.readLine()) != null) {
 						if (nbreLigne >= debut && nbreLigne <= fin) {
@@ -120,7 +123,7 @@ public class Fline extends Command {
 				}
 			}
 		} else {
-			System.out.println("error fichier inexistant");
+			Output.fichierIntrouvable();
 		}
 
 	}

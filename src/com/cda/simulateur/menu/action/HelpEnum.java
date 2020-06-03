@@ -20,7 +20,7 @@ public enum HelpEnum {
 			+ "\nAffiche la liste des fichiers et sous-répertoires du répertoire en cours\r\n"
 			+ "et affiche le nombre de fichiers et/ou de répertoires du répertoire en cours\r\n"
 			+ "ou du répertoire spécifié\r\n"),
-	EXIT("\nEXIT\r\n" + "\nQuitte le programme console.jar (interpréteur de commandes).\r\n"),
+	EXIT("\nEXIT\r\n" + "\nQuitte le programme cmd-simulateur.jar (interpréteur de commandes).\r\n"),
 	FIND("\nFIND\r\n" + "FIND [-starts]\"chaîne\"\r\n" + "FIND [-ends]\"chaîne\"\r\n"
 			+ "FIND [-starts]\"chaîne\"[-ends]\"chaîne\"\r\n"
 			+ "\n  -starts[chaîne]   Signifie que vous recherchez un fichier dont le nom commence\r\n"

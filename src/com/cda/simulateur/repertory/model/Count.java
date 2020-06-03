@@ -3,6 +3,7 @@ package com.cda.simulateur.repertory.model;
 import java.io.File;
 
 import com.cda.simulateur.menu.action.Command;
+import com.cda.simulateur.tools.Output;
 import com.cda.simulateur.tools.Utils;
 
 public class Count extends Command {
@@ -60,7 +61,7 @@ public class Count extends Command {
 			}
 
 		} else {
-			System.out.println("unknown option -" + vNonValidArgument);
+			Output.syntaxeIncorrecte();
 		}
 	}
 
@@ -89,11 +90,11 @@ public class Count extends Command {
 	}
 
 	private void afficheNombreRepertoire(int pNombreElement) {
-		System.out.println(pNombreElement + " dossiers");
+		System.out.println(pNombreElement + " dossier(s).");
 	}
 
 	private void afficheNombreFichier(int pNombreElement) {
-		System.out.println(pNombreElement + " fichiers");
+		System.out.println(pNombreElement + " fichier(s).");
 	}
 
 	private void recursivePath(File pPath) {
@@ -104,8 +105,8 @@ public class Count extends Command {
 				if (f.isDirectory()) {
 					recursivePath(f.getAbsoluteFile());
 					System.out.println("<DIR>  " + f.getAbsolutePath());
-					System.out.println("repertoire : " + recupereNombreRepertoire(f.getAbsolutePath()));
-					System.out.println("fichier    : " + recupereNombreFichier(f.getAbsolutePath()));
+					System.out.println("Répertoire(s) : " + recupereNombreRepertoire(f.getAbsolutePath()));
+					System.out.println("Fichier(s)    : " + recupereNombreFichier(f.getAbsolutePath()));
 				}
 			}
 		}
