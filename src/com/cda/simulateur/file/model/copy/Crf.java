@@ -6,6 +6,7 @@ import java.util.Random;
 
 import com.cda.simulateur.menu.action.Command;
 import com.cda.simulateur.repertory.model.Pwd;
+import com.cda.simulateur.tools.Output;
 import com.cda.simulateur.tools.Utils;
 
 /**
@@ -40,7 +41,7 @@ public class Crf extends Command {
 		File fichierTemp = new File(vCheminFichierTemp);
 
 		if (vNomFichierComplet == "") {
-			System.out.println("vous devez spécifier un nom de fichier");
+			Output.syntaxeIncorrecte();
 		} else if (fichierACreer.exists()) {
 			try {
 				Utils.copieContenu(vCheminFichierComplet, vCheminFichierTemp);
@@ -48,15 +49,16 @@ public class Crf extends Command {
 				Utils.copieContenu(vCheminFichierTemp, vCheminFichierComplet);
 				fichierTemp.delete();
 			} catch (IOException e) {
-				System.out.println("création fichier impossible");
+				Output.creationFichierEchec();
 			} finally {
 				fichierTemp.delete();
 			}
 		} else {
 			try {
 				fichierACreer.createNewFile();
+				Output.creationFichierReussie();
 			} catch (IOException e) {
-				System.out.println("création fichier impossible");
+				Output.creationFichierEchec();
 			}
 		}
 	}

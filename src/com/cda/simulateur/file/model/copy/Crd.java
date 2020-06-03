@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 
 import com.cda.simulateur.menu.action.Command;
 import com.cda.simulateur.repertory.model.Pwd;
+import com.cda.simulateur.tools.Output;
 
 /**
  * Classe <b>Crd</b> qui crée le répertoire dans le répertoire en cours, dont le
@@ -32,15 +33,16 @@ public class Crd extends Command {
 		Path path = Paths.get(vCheminFichierComplet);
 
 		if (vNomFichierComplet == "") {
-			System.out.println("La syntaxe de la commande n’est pas correcte.");
+			Output.syntaxeIncorrecte();
+			;
 		} else if (!Files.exists(path)) {
 			try {
 				Files.createDirectories(path);
 			} catch (IOException e) {
-				System.out.println("création fichier impossible");
+				Output.creationRepertoireEchec();
 			}
 		} else if (Files.exists(path)) {
-			System.out.println("Un sous-répertoire ou un fichier test existe déjà.");
+			Output.fichierExisteDeja(vNomFichierComplet);
 		}
 	}
 

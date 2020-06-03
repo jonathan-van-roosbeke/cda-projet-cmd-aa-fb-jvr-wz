@@ -46,7 +46,7 @@ public enum HelpEnum {
 	LS("\nLS\r\n" + "\nAffiche les fichiers et les répertoires du répertoire en cours.\r\n"),
 	NOW("\nNOM\r\n" + "NOW [-t] [-d] [-dt] [-td]\r\n" + "\n      Sans paramètres affiche l'heure et la date.\r\n"
 			+ "  -t  Affiche l'heure.\r\n" + "  -d  Affiche la date.\r\n"),
-	PWD("En cours d'implémentation.\r\n"),
+	PWD("\nLS\r\n" + "\nAffiche l'adresse du répertoire en cours.\r\n"),
 	RIVER("\nRIVER [nombre][nombre]\r\n" + "\nAprès addition à eux-même de chacun des chiffres qui composent\r\n"
 			+ "les nombres entrés en paramètres, affiche leur nombre commun s'ils se croisent.\r\n"),;
 

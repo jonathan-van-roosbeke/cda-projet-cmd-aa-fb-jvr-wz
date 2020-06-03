@@ -29,7 +29,7 @@ public class Now extends Command {
 		if (pSaisie[0].startsWith("-")) {
 			String encours = "";
 			String test = pSaisie[0];
-			Character[] argSwitch = { 'd', 't' };
+			Character[] argSwitch = { 'd', 't', '-' };
 			List<Character> arrayArgs = Arrays.asList(argSwitch);
 			test = Utils.removeDuplicateCharacter(test).replace("-", "");
 			for (int i = 0; i < test.length(); i++) {

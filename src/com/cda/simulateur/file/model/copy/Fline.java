@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.cda.simulateur.menu.action.Command;
+import com.cda.simulateur.tools.Output;
 import com.cda.simulateur.tools.Utils;
 
 public class Fline extends Command {
@@ -26,7 +27,7 @@ public class Fline extends Command {
 	@Override
 	public void executer(String... pSaisie) {
 		String str;
-		int nbrLine = 0;
+		int nbrLignes = 0;
 		String arg = Utils.stringCleaner(pSaisie);
 		String[] args = arg.split(" ");
 		File file = new File(args[0]);
@@ -36,15 +37,12 @@ public class Fline extends Command {
 				if (str.contains("urna")) {
 					System.out.println(str);
 				}
-				nbrLine++;
+				nbrLignes++;
 			}
 		} catch (IOException e) {
-
 			e.printStackTrace();
 		}
-
-		System.out.println("Nombre de lignes dans le fichier : " + nbrLine);
-
+		Output.nbreLignes(pSaisie[0], nbrLignes);
 	}
 
 	public static int verifArgs(String... pSaisie) {

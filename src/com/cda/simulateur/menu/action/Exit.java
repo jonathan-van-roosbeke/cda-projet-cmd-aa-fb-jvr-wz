@@ -15,5 +15,6 @@ public class Exit extends Command {
 
 	@Override
 	public void executer(String... pSaisie) {
+		executer();
 	}
 }

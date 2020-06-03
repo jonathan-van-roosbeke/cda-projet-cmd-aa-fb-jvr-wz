@@ -76,7 +76,7 @@ public class Ihm {
 		String cmd;
 
 		do {
-			System.out.println(Pwd.getAdressCourante());
+			Output.adresseCourante(Pwd.getAdressCourante());
 
 			cmd = sc.nextLine().toLowerCase().trim();
 			commande = cmd;
