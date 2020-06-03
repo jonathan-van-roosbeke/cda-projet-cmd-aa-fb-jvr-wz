@@ -35,7 +35,8 @@ public class Count extends Command {
 		String vNonValidArgument = "";
 		pArgument = Utils.removeDuplicateCharacter(pArgument);
 		for (int i = 0; i < pArgument.length(); i++) {
-			if (pArgument.charAt(i) != '-' && pArgument.charAt(i) != 'd' && pArgument.charAt(i) != 'f') {
+			if (pArgument.charAt(i) != '-' && pArgument.charAt(i) != 'd' && pArgument.charAt(i) != 'f'
+					&& pArgument.charAt(i) != 'r') {
 				vNonValidArgument += pArgument.charAt(i);
 			}
 		}
@@ -51,6 +52,10 @@ public class Count extends Command {
 				case 'd':
 					afficheNombreRepertoire(nombreFichier[0]);
 					break;
+
+				case 'r':
+					recursivePath(new File(Pwd.getAdressCourante()));
+					System.out.println();
 				}
 			}
 
@@ -59,12 +64,51 @@ public class Count extends Command {
 		}
 	}
 
+	private int recupereNombreRepertoire(String pUrl) {
+		File vFile = new File(pUrl);
+		File[] vFileList = vFile.listFiles();
+		int count = 0;
+		for (File f : vFileList) {
+			if (f.isDirectory()) {
+				count++;
+			}
+		}
+		return count;
+	}
+
+	private int recupereNombreFichier(String pUrl) {
+		File vFile = new File(pUrl);
+		File[] vFileList = vFile.listFiles();
+		int count = 0;
+		for (File f : vFileList) {
+			if (f.isFile()) {
+				count++;
+			}
+		}
+		return count;
+	}
+
 	private void afficheNombreRepertoire(int pNombreElement) {
 		System.out.println(pNombreElement + " dossiers");
 	}
 
 	private void afficheNombreFichier(int pNombreElement) {
 		System.out.println(pNombreElement + " fichiers");
+	}
+
+	private void recursivePath(File pPath) {
+		File[] listDossier = pPath.listFiles();
+
+		if (listDossier != null) {
+			for (File f : listDossier) {
+				if (f.isDirectory()) {
+					recursivePath(f.getAbsoluteFile());
+					System.out.println("<DIR>  " + f.getAbsolutePath());
+					System.out.println("repertoire : " + recupereNombreRepertoire(f.getAbsolutePath()));
+					System.out.println("fichier    : " + recupereNombreFichier(f.getAbsolutePath()));
+				}
+			}
+		}
 	}
 
 	@Override
