@@ -32,8 +32,12 @@ public class Now extends Command {
 			Character[] argSwitch = { 'd', 't', '-' };
 			List<Character> arrayArgs = Arrays.asList(argSwitch);
 			test = Utils.removeDuplicateCharacter(test).replace("-", "");
+			test = test.replace(" ", "");
 			for (int i = 0; i < test.length(); i++) {
 				encours += arrayArgs.contains(test.charAt(i)) ? "" : test.charAt(i);
+			}
+			if (test.equals("")) {
+				executer();
 			}
 			if (encours.equals("")) {
 				for (int i = 0; i < test.length(); i++) {
@@ -61,13 +65,3 @@ public class Now extends Command {
 		}
 	}
 }
-
-/*
- * "now" affiche l'heure et/ou la date système.
- * 
- * now affiche "il est grand temps d'aller dormir ! " now -d 11:42:22 now -t
- * 03/10/2020 now -d -t 11:42:22 03/10/2020 now -t -
- * 
- * d 11:42:22 03/10/2020 now -t -d 11:42:22 03/10/2020 now -d -t 11:42:22
- * 03/10/2020 now -r unknown option -r now -ty unknow option -y
- */

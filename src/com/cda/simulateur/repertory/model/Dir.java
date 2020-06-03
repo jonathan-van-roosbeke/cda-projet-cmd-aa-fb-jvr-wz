@@ -40,8 +40,10 @@ public class Dir extends Command {
 		vNombreFichier = 0;
 		File[] vFiles = new File(vUrl).listFiles();
 
-		for (File f : vFiles) {
-			afficheDossier(f);
+		if (vFiles != null) {
+			for (File f : vFiles) {
+				afficheDossier(f);
+			}
 		}
 	}
 
@@ -50,15 +52,25 @@ public class Dir extends Command {
 		String vUrl = Utils.stringCleaner(pSaisie[0]);
 		vNombreDossier = 0;
 		vNombreFichier = 0;
-		if (Utils.existAbsolute(vUrl) && vUrl.contains(":")) {
-			File[] vFiles = new File(vUrl + "/").listFiles();
-			for (File f : vFiles) {
-				afficheDossier(f);
-			}
-		} else if (Utils.existInRepertory(vUrl)) {
-			File[] vFiles = new File(Pwd.getAdressCourante() + vUrl).listFiles();
-			for (File f : vFiles) {
-				afficheDossier(f);
+		if (vUrl != null) {
+			if (Utils.existAbsolute(vUrl) && vUrl.contains(":")) {
+				File[] vFiles = new File(vUrl + "/").listFiles();
+				if (vFiles != null) {
+					for (File f : vFiles) {
+						afficheDossier(f);
+					}
+				} else {
+					System.out.println("Le chemin n'existe pas");
+				}
+			} else if (Utils.existInRepertory(vUrl)) {
+				File[] vFiles = new File(Pwd.getAdressCourante() + vUrl).listFiles();
+				if (vFiles != null) {
+					for (File f : vFiles) {
+						afficheDossier(f);
+					}
+				}
+			} else {
+				System.out.println("Le dossier n'existe pas");
 			}
 		} else {
 			System.out.println("Le chemin n'existe pas");
