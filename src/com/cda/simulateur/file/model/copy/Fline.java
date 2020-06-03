@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.cda.simulateur.menu.action.Command;
-import com.cda.simulateur.tools.Output;
 import com.cda.simulateur.tools.Utils;
 
 public class Fline extends Command {
@@ -27,28 +26,6 @@ public class Fline extends Command {
 
 	}
 
-<<<<<<< HEAD
-	@Override
-	public void executer(String... pSaisie) {
-		String str;
-		int nbrLignes = 0;
-		String arg = Utils.stringCleaner(pSaisie);
-		String[] args = arg.split(" ");
-		File file = new File(args[0]);
-
-		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-			while ((str = br.readLine()) != null) {
-				if (str.contains("urna")) {
-					System.out.println(str);
-				}
-				nbrLignes++;
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		Output.nbreLignes(pSaisie[0], nbrLignes);
-	}
-=======
 	class Option {
 		String nom;
 		String valeur;
@@ -67,7 +44,6 @@ public class Fline extends Command {
 
 		if (Utils.existFile(vCmdArgs[0])) {
 			List<Option> vOptions = new ArrayList<Fline.Option>();
->>>>>>> fethi
 
 			for (int i = 1; i < vCmdArgs.length; i++) {
 				Option vOption = new Option();
